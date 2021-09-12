@@ -1,13 +1,15 @@
 import './App.css';
-import Product from "./components/Product"
+import Productos from './components/Product';
+import Navbar from './components/Navbar';
+
 function App() {
   return (
     <div className="App">
-      <h1>probandoando2</h1>
-
-      <Product/>
+      <Navbar/>
+      <Productos/>
     </div>
   );
 }
+
 
 export default App;
