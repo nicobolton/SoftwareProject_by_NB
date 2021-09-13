@@ -47,7 +47,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Productos() {
+
+export default function Product(){
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -59,11 +60,7 @@ export default function Productos() {
     <Card className={classes.root}>
       <CardHeader
         action={
-            <Typography
-                className={classes.action}
-                variant='h5'
-                color='textSecondary'
-            >
+        <Typography className={classes.action} variant='h5' color='textSecondary'>
         {formatter.format(25000)}
         </Typography>
         }
@@ -105,7 +102,7 @@ export default function Productos() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>"Estas ildoras estan hechas en base
+          <Typography paragraph>"Estas pildoras estan hechas en base
           varias verduras y weas"</Typography>
         </CardContent>
       </Collapse>

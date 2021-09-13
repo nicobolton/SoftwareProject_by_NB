@@ -43,19 +43,19 @@ export default function Navbar() {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <img src={Icono} alt="Logo" className={classes.image}/>
+        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
+            <a href="/"> <img src={Icono} alt="Logo" className={classes.image} /> </a>
           </IconButton>
           <div className={classes.grow}/>
           <Typography variant="h6" color="textPrimary" component="p" >
             Via salud LTD.
           </Typography>
           <div className={classes.button}>
-            <Button varian="outlined">
-                <strong>Sign In</strong>
+            <Button varian="outlined" href="/signin">
+                <strong>Entrar</strong>
             </Button>
             <IconButton aria-label="Mostrar items carrito" color="inherit">
-            <Badge badgeContent={2} color="secondary">
+            <Badge badgeContent={2} color="secondary"> {/*Color a la compra*/}
             <ShoppingCart frontSize="large" color="primary"/>
             </Badge>
             </IconButton>
