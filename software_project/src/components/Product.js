@@ -11,7 +11,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {AddShoppingCart} from '@material-ui/icons';
-// import accounting from 'accounting';
 
 // creamos el formato para el dinero, además aproxima valores (caso de trabajar dolares)
 var formatter = new Intl.NumberFormat('es-CL', {
@@ -69,14 +68,14 @@ export default function Product(){
       />
       <CardMedia
         className={classes.media}
-        image="https://images6.alphacoders.com/114/thumb-1920-1145395.png"
-        title="Reze"
+        image="https://vidanat.cl/wp-content/uploads/2019/01/calcio-magnesio-vitamina-c-y-d3.png"
+        title="Vitaminas"
       />
 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          Producto que contiene capacidades milagrosas para sanar a todos de
-          la terrible caña que tendrás este 18
+        Actúa como activador del metabolismo de carbohidratos y proteinas, 
+        regulando la contracción muscular ayudando a evitar los calambres.
         </Typography>
       </CardContent>
 
@@ -102,8 +101,9 @@ export default function Product(){
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>"Estas pildoras estan hechas en base
-          varias verduras y weas"</Typography>
+          <Typography paragraph>
+            100 cápsulas
+          </Typography>
         </CardContent>
       </Collapse>
     </Card>
