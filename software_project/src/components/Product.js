@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "3rem",
   },
   media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
+    height: 100,
+    paddingTop: '56.25%',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -63,7 +63,7 @@ export default function Product(){
         {formatter.format(25000)}
         </Typography>
         }
-        title="Producto nacional"
+        title="Calcio magnesio vitamina C+D3"
         subheader="10 unidades"
       />
       <CardMedia
