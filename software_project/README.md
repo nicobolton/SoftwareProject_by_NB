@@ -35,4 +35,6 @@ npm i dotenv
 npm i body-parser
 ```
 Para ejecutar el servidor se usa
-`npm run dev`
+```
+npm run dev
+```
