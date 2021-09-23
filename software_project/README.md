@@ -23,7 +23,7 @@ Para ver lo estético [https://material-ui.com/components/box/]
 
 ## Librerias necesarias Backend ##
 Muevanse a la carpeta de Backend
-`` cd Software/SoftwareProject_by_NB/software_project/Frontend ``
+`` cd Software/SoftwareProject_by_NB/software_project/Backend/src``
 Y procedan a realizar los siguientes comandos para instalar lo necesario
 ```
 npm init
