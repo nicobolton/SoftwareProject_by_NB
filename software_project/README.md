@@ -8,7 +8,8 @@ Una vez que hagan pull realicen lo siguiente:
 `` npm i ``
 
 Esto ha de servir para actualizar los paths, ya que ordene en carpetas las coasas.
-
+Además recuerden siempre entrar a la ruta de Fronted para levantar la página
+`npm start`
 
 ## Librerias necesarias Frontend ##
 ``npm install @material-ui/core @material-ui/icons`` este es para lo estético
@@ -16,13 +17,11 @@ Para ver lo estético [https://material-ui.com/components/box/]
 
 ``npm install react-router-dom`` este sirve para hacer las rutas en la página
 
-``npm install firebase`` este tiraba problemas, hay que ver bien la bdd
 
 ## Librerias necesarias Backend ##
 Muevanse a la carpeta de Backend
 `` cd Software/SoftwareProject_by_NB/software_project/Frontend ``
 Y procedan a realizar los siguientes comandos para instalar lo necesario
-
 ```
 npm init
 npm i express
