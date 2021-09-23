@@ -8,6 +8,9 @@ Una vez que hagan pull realicen lo siguiente:
 `` npm i ``
 
 Esto ha de servir para actualizar los paths, ya que ordene en carpetas las coasas.
+
+#
+
 Además recuerden siempre entrar a la ruta de Fronted para levantar la página
 `npm start`
 
