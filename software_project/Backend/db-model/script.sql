@@ -5,7 +5,7 @@ create table Usuario (
 	clave varchar(50) not null,
 	direccion varchar(50) not null,
 	telefono integer not null,
-	UNIQUE(usuario)
+	UNIQUE(ID_USUARIO)
 );
 
 create table UsuarioNR(
