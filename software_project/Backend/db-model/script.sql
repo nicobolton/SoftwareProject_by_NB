@@ -8,6 +8,12 @@ create table Usuario (
 	UNIQUE(usuario)
 );
 
+create table UsuarioNR(
+	nombre varchar (50) not null,
+	correo varchar (50) not null,
+	telefono integer not null
+);
+
 create table Productos (
 	ID_PRODUCTO integer PRIMARY KEY,
 	nombre varchar(50) not null,
