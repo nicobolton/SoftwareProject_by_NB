@@ -23,7 +23,7 @@ Muevanse a la carpeta de Backend
 `` cd Software/SoftwareProject_by_NB/software_project/Frontend ``
 Y procedan a realizar los siguientes comandos para instalar lo necesario
 
-``sh
+```
 npm init
 npm i express
 npm i --save-dev nodemon
@@ -33,6 +33,6 @@ npm i cors
 npm i
 npm i dotenv
 npm i body-parser
-``
+```
 Para ejecutar el servidor se usa
 `npm run dev`
