@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginLeft: theme.spacing(2),
   },
+  button2: {
+    marginLeft: theme.spacing(0),
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -46,10 +49,16 @@ export default function Navbar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
             <a href="/"> <img src={Icono} alt="Logo" className={classes.image} /> </a>
           </IconButton>
+          <div className={classes.button2}>
+            <Button varian="outlined" href="/categorias">
+              <strong>Categorías</strong>
+            </Button>
+          </div>
           <div className={classes.grow} />
           <Typography variant="h6" color="textPrimary" component="p" >
             Via salud LTD.
           </Typography>
+
           <div className={classes.button}>
             <Button varian="outlined" href="/signin">
               <strong>Ingresar</strong>
