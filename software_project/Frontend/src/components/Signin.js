@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {Link as RouteLink} from 'react-router-dom';
+import { Link as RouteLink } from 'react-router-dom';
+
+
 
 
 function Copyright() {
@@ -51,6 +53,50 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  function validateForm() {
+    return username.length > 0 && password.length > 0;
+  }
+
+  async function Login() {
+    if (!loading) {
+      setLoading(true);
+      fetch('http://localhost:3000/signin', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: username,
+          pass: password
+        }),
+      })
+        .then((response) => response.json())
+        .then(async (json) => {
+          if (json.status) {
+            localStorage.setItem('token', json.token);
+            setLoading(false);
+            window.location.href = "/";
+          } else {
+            alert("fallo el inicio de sesion")
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      setLoading(false);
+    }
+  }
+
+  function handleSubmit(event) {
+    Login();
+    event.preventDefault();
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -61,28 +107,35 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Iniciar sesión
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            controlId="username"
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
             label="Correo electrónico"
-            name="email"
+            //name="email"
             autoComplete="email"
             autoFocus
           />
           <TextField
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            controlId="password"
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="password"
+            //name="password"
             label="Contraseña"
             type="password"
             id="password"
             autoComplete="current-password"
+
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -94,6 +147,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={!validateForm()}
           >
             Entrar
           </Button>

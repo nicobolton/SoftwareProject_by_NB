@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {Link as RouteLink} from 'react-router-dom';
+import { Link as RouteLink } from 'react-router-dom';
 //import { auth } from '../firebase';
 
 function Copyright() {
@@ -50,14 +50,54 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [username, setUsername] = useState("");
+  const [lastname, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const signup = (e) =>{
-        e.preventDefault();
-        //auth
+  const [loading, setLoading] = useState(false);
+
+  function validateForm() {
+    return username.length > 0 && email.length > 0 && password.length > 0 && lastname.length > 0 && phone.length > 0;
   }
-  
+
+  async function Register() {
+    if (!loading) {
+      setLoading(true);
+      fetch('http://localhost:3000/Signup', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: username,
+          lname: lastname,
+          email: email,
+          pass: password,
+          tel: phone
+        }),
+      })
+        .then((response) => response.json())
+        .then(async (json) => {
+          if (json.status) {
+            alert("Registrado con exito!");
+          } else {
+            alert("Fallo el registro :(");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      setLoading(false);
+    }
+  }
+
+  function handleSubmit(event) {
+    Register();
+    event.preventDefault();
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -68,10 +108,12 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Registrarse
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                value={username}
+                onChange={e => setUsername(e.target.value)}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -84,6 +126,8 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                value={lastname}
+                onChange={e => setLname(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -96,7 +140,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 value={email}
-                onChange={e=>setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -109,7 +153,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 value={password}
-                onChange={e=>setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -123,7 +167,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 value={phone}
-                onChange={e=>setPhone(e.target.value)}
+                onChange={e => setPhone(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -140,12 +184,13 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
+            disabled={!validateForm()}
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick = {signup}
+            onClick={Register}
           >
             Registrarse
           </Button>

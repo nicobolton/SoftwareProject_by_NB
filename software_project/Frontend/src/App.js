@@ -10,24 +10,24 @@ import SignUp from './components/Signup';
 function App() {
   return (
     <Router>
-    <div className="App">
-      <Navbar/>
+      <div className="App">
+        <Navbar />
 
-      <Switch> 
-      <Route path="/signup">
-        <SignUp/>
-      </Route>
+        <Switch>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
 
-      <Route path="/signin">
-        <SignIn/>
-      </Route>
+          <Route path="/signin">
+            <SignIn />
+          </Route>
 
-      <Route path="/">
-      <Products/>
-      </Route>
-      
-      </Switch>      
-    </div>
+          <Route path="/">
+            <Products />
+          </Route>
+
+        </Switch>
+      </div>
     </Router>
   );
 }

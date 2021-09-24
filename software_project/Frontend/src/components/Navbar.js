@@ -16,20 +16,20 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     backgroundColor: "whitesmoke",
-    boxShadow: "none",
+    boxShadow: "yes",
   },
   grow: {
-    flexGrow:1, //Permite ocuparle el máximo que pueda
+    flexGrow: 1, //Permite ocuparle el máximo que pueda
   },
-  button:{
+  button: {
     marginLeft: theme.spacing(2),
-  }, 
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   image: {
-      marginRight: "10px",
-      width: "4rem"
+    marginRight: "10px",
+    width: "4rem"
   },
   title: {
     flexGrow: 1,
@@ -43,21 +43,21 @@ export default function Navbar() {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
             <a href="/"> <img src={Icono} alt="Logo" className={classes.image} /> </a>
           </IconButton>
-          <div className={classes.grow}/>
+          <div className={classes.grow} />
           <Typography variant="h6" color="textPrimary" component="p" >
             Via salud LTD.
           </Typography>
           <div className={classes.button}>
             <Button varian="outlined" href="/signin">
-                <strong>Entrar</strong>
+              <strong>Ingresar</strong>
             </Button>
             <IconButton aria-label="Mostrar items carrito" color="inherit">
-            <Badge badgeContent={2} color="secondary"> {/*Color a la compra*/}
-            <ShoppingCart frontSize="large" color="primary"/>
-            </Badge>
+              <Badge badgeContent={1} color="secondary"> {/*Color a la compra*/}
+                <ShoppingCart frontSize="large" color="primary" />
+              </Badge>
             </IconButton>
           </div>
         </Toolbar>
