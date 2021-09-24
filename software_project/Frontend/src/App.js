@@ -18,8 +18,11 @@ function App() {
           <Route path="/signup">
             <SignUp />
           </Route>
-
           <Route path="/user">
+            <Navbar_usr/>
+            <Products/>
+          </Route>
+          <Route path="/perfil">
             <Navbar_usr/>
             <Profile/>
           </Route>

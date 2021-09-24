@@ -146,6 +146,7 @@ export default function SignIn() {
             fullWidth
             variant="contained"
             color="primary"
+            href="/user"
             className={classes.submit}
             disabled={!validateForm()}
           >

@@ -21,6 +21,7 @@ import React from 'react';
                     <div style={{display:"flex", justifyContent:"space-between", width:"108%"}}>
                         <label>Cumpleaños: 21/04/1994</label>
                         <label>Telefono: +56 9 77213412</label>
+                        <button> </button>
                     </div>
 
                 </div>
