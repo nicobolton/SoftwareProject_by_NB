@@ -118,7 +118,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="firstName"
-                label="Nombre"
+                label="Nombre y Apellido"
                 autoFocus
               />
             </Grid>
