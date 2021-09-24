@@ -51,14 +51,13 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
   const [username, setUsername] = useState("");
-  const [lastname, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
 
   function validateForm() {
-    return username.length > 0 && email.length > 0 && password.length > 0 && lastname.length > 0 && phone.length > 0;
+    return username.length > 0 && email.length > 0 && password.length > 0 && phone.length > 0;
   }
 
   async function Register() {
@@ -72,7 +71,6 @@ export default function SignUp() {
         },
         body: JSON.stringify({
           user: username,
-          lname: lastname,
           email: email,
           pass: password,
           tel: phone
@@ -110,7 +108,7 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
                 value={username}
                 onChange={e => setUsername(e.target.value)}
@@ -122,19 +120,6 @@ export default function SignUp() {
                 id="firstName"
                 label="Nombre"
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                value={lastname}
-                onChange={e => setLname(e.target.value)}
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Apellido"
-                name="lastName"
-                autoComplete="lname"
               />
             </Grid>
             <Grid item xs={12}>
