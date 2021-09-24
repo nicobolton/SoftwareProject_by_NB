@@ -6,7 +6,7 @@ import Products from './components/Products';
 import SignIn from './components/Signin';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
 import SignUp from './components/Signup';
-
+import Profile from './components/User';
 
 function App() {
   return (
@@ -17,6 +17,11 @@ function App() {
         <Switch>
           <Route path="/signup">
             <SignUp />
+          </Route>
+
+          <Route path="/user">
+            <Navbar_usr/>
+            <Profile/>
           </Route>
 
           <Route path="/signin">

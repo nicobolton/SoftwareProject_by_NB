@@ -20,7 +20,7 @@ server.use(cors())
 
 /* VARIABLES */
 
-var port = process.env.PORT || 5432
+var port = process.env.PORT || 4000
 var ip = process.env.PORT || "localhost"
 
 /* PORTS */
@@ -32,10 +32,10 @@ var ip = process.env.PORT || "localhost"
 /* SERVER */
 
 server.get("/", async (req, res) => {
-    res.send("esta es la api :)");
+    res.send("ola");
 });
 
-server.post("/Singup", async (req, res) => {
+server.post("/singup", async (req, res) => {
     const { user, lname, pass, email, tel } = req.body;
     const getUser = await pool.query("SELECT usuario FROM Usuario where usuario = $1::text", [user]);
     if (getUserUser.rows.length) {
