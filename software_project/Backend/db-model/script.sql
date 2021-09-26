@@ -1,11 +1,10 @@
 create table Usuario (
-  ID_USUARIO integer PRIMARY KEY,
+  ID_USUARIO serial PRIMARY KEY not null,
   usuario varchar(50) not null,
-  apellido varchar(50) not null,
   correo varchar(50) not null,
   clave varchar(50) not null,
-  direccion varchar(50) not null,
   telefono integer not null,
+  direccion varchar(50) not null,
   UNIQUE(ID_USUARIO)
 );
 create table UsuarioNR(

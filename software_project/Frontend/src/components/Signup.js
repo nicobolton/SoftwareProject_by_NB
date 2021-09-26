@@ -55,7 +55,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
-
+  
   function validateForm() {
     return username.length > 0 && email.length > 0 && password.length > 0 && phone.length > 0;
   }
@@ -63,7 +63,7 @@ export default function SignUp() {
   async function Register() {
     if (!loading) {
       setLoading(true);
-      fetch('http://localhost:3000/Signup', {
+      fetch('http://localhost:3000/signup', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
