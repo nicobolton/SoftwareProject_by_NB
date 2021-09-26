@@ -1,4 +1,4 @@
-create table Cliente (
+create table Usuario (
   ID_USUARIO serial PRIMARY KEY not null,
   usuario varchar(50) not null,
   correo varchar(50) not null,
@@ -10,7 +10,7 @@ create table Cliente (
 );
 
 create table Productos (
-  ID_PRODUCTO integer PRIMARY KEY,
+  ID_PRODUCTO serial PRIMARY KEY not null,
   nombre varchar(50) not null,
   descripcion varchar(50) not null,
   precio integer not null,
@@ -20,12 +20,12 @@ create table Productos (
   UNIQUE(nombre)
 );
 create table Venta (
-  ID_VENTA integer PRIMARY KEY,
+  ID_VENTA serial PRIMARY KEY not null,
   id_cliente integer not null,
   fecha timestamp
 );
 create table DetalleVenta(
-  ID_DETALLEVENTA integer PRIMARY KEY,
+  ID_DETALLEVENTA serial PRIMARY KEY not null,
   id_venta integer not null,
   id_producto integer not null,
   fecha timestamp,
@@ -34,7 +34,7 @@ create table DetalleVenta(
   precio integer not null
 );
 create table Consultas(
-  ID_CONSULTAS integer PRIMARY KEY,
+  ID_CONSULTAS serial PRIMARY KEY not null,
   correo varchar(50) not null,
   estado boolean,
   titulo varchar(50) not null,

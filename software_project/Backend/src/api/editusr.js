@@ -2,11 +2,11 @@
 const { Router } = require('express')
 const express = require('express')
 const router = express.Router()
-const {clientes} = require('../controllers/clientes.controller')
+const {editusr} = require('../controllers/editUser.controller')
 
 
 /* APIS */
-router.get('/', clientes)
+router.post('/', editusr)
 
 
 module.exports = router

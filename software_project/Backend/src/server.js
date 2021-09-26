@@ -32,6 +32,10 @@ server.use("/api/registro", require("./api/registro"))
 
 server.use("/api/login", require("./api/login"))
 
+//server.use("/api/editusr", require("./api/editusr"))
+
+server.use("/api/historial", require("./api/historial"))
+
 server.listen(port, () => {
     console.log(`Servidor ViaSalud corriendo en: http://${ip}:${port}.`)
 })
