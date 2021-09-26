@@ -14,8 +14,9 @@ const editUser = async(req, res) =>{
     console.log("Entra a la función de editar")
     res.header("Access-Control-Allow-Origin","*");
     const {dir, cum} = req.body
-    const sqlQuery = ("UPDATE Usuario SET direccion = "[dir]);
-    const sqlQuery2 = ("UPDATE Usuario SET cumpleaños = "[cum]);
+    const sqlQuery = ("UPDATE Usuario SET direccion = "[dir] + "WHERE ID_USUARIO =");
+    //Ver bien con el frontend, debido a que hay que guardar un local storage
+    const sqlQuery2 = ("UPDATE Usuario SET cumpleaños = "[cum] + "WHERE ID_USUARIO =");
     const values = [dir]
     const values2 = [cum]
     const response = await pool.query(sqlQuery, values);
