@@ -1,17 +1,14 @@
-create table Usuario (
+create table Cliente (
   ID_USUARIO serial PRIMARY KEY not null,
   usuario varchar(50) not null,
   correo varchar(50) not null,
   clave varchar(50) not null,
   telefono integer not null,
-  direccion varchar(50) not null,
+  direccion varchar(50),
+  cumpleaños date,
   UNIQUE(ID_USUARIO)
 );
-create table UsuarioNR(
-  nombre varchar (50) not null,
-  correo varchar (50) not null,
-  telefono integer not null
-);
+
 create table Productos (
   ID_PRODUCTO integer PRIMARY KEY,
   nombre varchar(50) not null,

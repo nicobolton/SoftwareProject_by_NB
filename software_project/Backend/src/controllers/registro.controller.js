@@ -11,25 +11,14 @@ const config = {
 const pool = new Pool(config);
 
 const registro= async (req, res) =>{
+    console.log("entrando a funcion de registro")
+    res.header("Access-Control-Allow-Origin","*");
     const { user, email, pass, tel } = req.body;
-    const getUser = await pool.query("SELECT usuario FROM Usuario where usuario = $1::text", [user]);
-    if (getUser.rows.length) {
-        res.json({
-            status: 0
-        })
-        return;
-    }
-    else {module.exports = {clientes};
-        await pool.query("INSERT INTO Usuario(usuario,correo,clave,telefono) VALUES ($1::text, $2::text, $3::text, $4::text, $5::text", [user, lname, email, pass, tel]);
-        res.json({
-            status: 1,
-            user: user,
-            email: email,
-            pass: pass,
-            tel: tel
-        })
-        return;
-    }
+    const sqlQuery = 'INSERT INTO Usuario (usuario, correo, clave, telefono) values ($1,$2,$3,$4) RETURNING *';
+    const values = [user, email, pass, tel];
+    const response = await pool.query(sqlQuery, values);
+    console.log("Registrando clientes con los datos: \n",response.rows);
+    res.json(1);
 };
 
 module.exports = {registro};
