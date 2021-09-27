@@ -7,6 +7,7 @@ import SignIn from './components/Signin';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
 import SignUp from './components/Signup';
 import Profile from './components/User';
+import Categorias from './components/categorias';
 
 function App() {
   return (
@@ -15,16 +16,19 @@ function App() {
         <Navbar />
 
         <Switch>
+          <Route path="/categorias">
+            <Categorias />
+          </Route>
           <Route path="/signup">
             <SignUp />
           </Route>
           <Route path="/user">
-            <Navbar_usr/>
-            <Products/>
+            <Navbar_usr />
+            <Products />
           </Route>
           <Route path="/perfil">
-            <Navbar_usr/>
-            <Profile/>
+            <Navbar_usr />
+            <Profile />
           </Route>
 
           <Route path="/signin">
