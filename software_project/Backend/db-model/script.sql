@@ -5,10 +5,9 @@ create table Usuario (
   clave varchar(50) not null,
   telefono bigint not null,
   direccion varchar(50),
-  cumpleaños date,
+  cumplea ñ os date,
   UNIQUE(ID_USUARIO)
 );
-
 create table Productos (
   ID_PRODUCTO serial PRIMARY KEY not null,
   nombre varchar(50) not null,
@@ -19,23 +18,25 @@ create table Productos (
   stock integer not null,
   UNIQUE(nombre)
 );
-
 create table Venta (
   ID_VENTA serial PRIMARY KEY not null,
   id_cliente integer not null,
   fecha timestamp
 );
-
-  create table DetalleVenta(
-    ID_DETALLEVENTA serial PRIMARY KEY not null,
-    id_venta integer not null,
-    id_producto integer not null,
-    fecha timestamp,
-    cantidad integer not null,
-    subtotal integer not null,
-    precio integer not null
-  );
-
+create table DetalleVenta(
+  ID_DETALLEVENTA serial PRIMARY KEY not null,
+  id_venta integer not null,
+  id_producto integer not null,
+  fecha timestamp,
+  cantidad integer not null,
+  subtotal integer not null,
+  precio integer not null
+);
+create table Categorias(
+  ID_CATEGORIA serial PRIMARY KEY not null,
+  nombre varchar(50),
+  descripcion varchar (100)
+);
 create table Consultas(
   ID_CONSULTAS serial PRIMARY KEY not null,
   correo varchar(50) not null,
