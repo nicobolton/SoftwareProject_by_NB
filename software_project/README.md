@@ -34,3 +34,6 @@ Para ejecutar el servidor se usa
 ```
 npm run dev
 ```
+
+## Video Demostrativo
+[![Video Demostración](https://i.imgur.com/PasdeVz.png)](https://youtu.be/hUJVePw60f8)
