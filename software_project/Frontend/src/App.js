@@ -10,6 +10,8 @@ import Profile from './components/User';
 import Categorias from './components/categorias';
 import CambiarDatos from './components/ChangeUserData';
 import Historial from './components/historial';
+import CambiarContraseña from './components/ChangePassword';
+import CambiarPassword from './components/ChangePassword';
 
 
 function App() {
@@ -42,6 +44,11 @@ function App() {
           <Route path="/changeUserData">
             <Navbar_usr />
             <CambiarDatos />
+          </Route>
+
+          <Route path="/changePassword">
+            <Navbar_usr />
+            <CambiarPassword />
           </Route>
 
           <Route path="/signin">
