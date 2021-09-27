@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar_usr() {
     const classes = useStyles();
-    
+
     return (
         <div className={classes.root}>
             <AppBar position="fixed" className={classes.appBar}>
@@ -58,6 +58,9 @@ export default function Navbar_usr() {
                     <div className={classes.button}>
                         <Button varian="outlined" href="/perfil">
                             <strong>Perfil</strong>
+                        </Button>
+                        <Button varian="outlined" href="/historial">
+                            <strong>historial</strong>
                         </Button>
                         <IconButton aria-label="Mostrar items carrito" color="inherit">
                             <Badge badgeContent={1} color="secondary"> {/*Color a la compra*/}

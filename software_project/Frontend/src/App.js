@@ -9,6 +9,7 @@ import SignUp from './components/Signup';
 import Profile from './components/User';
 import Categorias from './components/categorias';
 import CambiarDatos from './components/ChangeUserData';
+import Historial from './components/historial';
 
 
 function App() {
@@ -33,9 +34,14 @@ function App() {
             <Profile />
           </Route>
 
+          <Route path="/historial">
+            <Navbar_usr />
+            <Historial />
+          </Route>
+
           <Route path="/changeUserData">
-            <Navbar_usr/>
-            <CambiarDatos/>
+            <Navbar_usr />
+            <CambiarDatos />
           </Route>
 
           <Route path="/signin">
