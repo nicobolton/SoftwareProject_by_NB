@@ -7,7 +7,8 @@ import SignIn from './components/Signin';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
 import SignUp from './components/Signup';
 import Profile from './components/User';
-import ChangeUserData from './components/ChangeUserData'
+import Categorias from './components/categorias';
+
 function App() {
   return (
     <Router>
@@ -15,25 +16,23 @@ function App() {
         <Navbar />
 
         <Switch>
+          <Route path="/categorias">
+            <Categorias />
+          </Route>
           <Route path="/signup">
             <SignUp />
           </Route>
           <Route path="/user">
-            <Navbar_usr/>
-            <Products/>
+            <Navbar_usr />
+            <Products />
           </Route>
           <Route path="/perfil">
-            <Navbar_usr/>
-            <Profile/>
+            <Navbar_usr />
+            <Profile />
           </Route>
 
           <Route path="/signin">
             <SignIn />
-          </Route>          
-          
-          <Route path="/changeUserData">
-            <Navbar_usr/>
-            <ChangeUserData />
           </Route>
 
           <Route path="/">
