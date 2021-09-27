@@ -42,8 +42,52 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function CambiarDatos() {
   const classes = useStyles();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  /*no necesita un wait :c?*/ 
+  function validateForm() {
+    return username.length > 0 && email.length > 0 && phone.length > 0;
+  }
+
+  async function ActualizarDatosUsuario() {
+    if (!loading) {
+      setLoading(true);
+      fetch('http://localhost:3000/signup', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: username,
+          email: email,
+          tel: phone
+        }),
+      })
+        .then((response) => response.json())
+        .then(async (json) => {
+          if (json.status) {
+            alert("Datos actualizados con exito!");
+          } else {
+            alert("Fallo el registro de datos :(");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      setLoading(false);
+    }
+  }
+
+  function handleSubmit(event) {
+    ActualizarDatosUsuario();
+    event.preventDefault();
+  }
 
   return (
     <Container component="main" maxWidth="xs">

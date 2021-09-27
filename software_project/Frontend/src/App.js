@@ -8,6 +8,8 @@ import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
 import SignUp from './components/Signup';
 import Profile from './components/User';
 import Categorias from './components/categorias';
+import CambiarDatos from './components/ChangeUserData';
+
 
 function App() {
   return (
@@ -29,6 +31,11 @@ function App() {
           <Route path="/perfil">
             <Navbar_usr />
             <Profile />
+          </Route>
+
+          <Route path="/changeUserData">
+            <Navbar_usr/>
+            <CambiarDatos/>
           </Route>
 
           <Route path="/signin">
