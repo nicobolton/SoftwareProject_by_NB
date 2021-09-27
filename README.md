@@ -59,4 +59,4 @@ npm run dev
 ```
 
 ## Video Demostrativo
-[![Video Demostración](https://i.imgur.com/OBBkrFU.png)](https://youtu.be/hUJVePw60f8)
+[![Video Demostración](https://i.imgur.com/PasdeVz.png)](https://youtu.be/hUJVePw60f8)
