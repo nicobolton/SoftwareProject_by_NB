@@ -52,50 +52,49 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const[emailuser, setEmail] = useState("");
+    const[password, setPass] = useState("");
+    const[loading, setLoading] = useState(false);
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  function validateForm() {
-    return username.length > 0 && password.length > 0;
-  }
-
-  async function Login() {
-    if (!loading) {
-      setLoading(true);
-      fetch('http://localhost:3000/signin', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user: username,
-          pass: password
-        }),
-      })
-        .then((response) => response.json())
-        .then(async (json) => {
-          if (json.status) {
-            localStorage.setItem('token', json.token);
-            setLoading(false);
-            window.location.href = "/";
-          } else {
-            alert("fallo el inicio de sesion")
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-      setLoading(false);
-    }
-  }
-
-  function handleSubmit(event) {
-    Login();
-    event.preventDefault();
-  }
+    function validateForm() {
+        return emailuser.length > 0 && password.length > 0;
+      }
+    
+      async function singIn(){
+        if(!loading){
+          setLoading(true);
+          fetch('http://localhost:4000/api/login', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: emailuser,
+              pass: password
+            }),
+          })
+            .then((response) => response.json())
+            .then(async (json) => {
+              if(json.status){
+                localStorage.setItem('token', json.token);
+                setLoading(false);
+                window.location.href = "/";
+              } else{
+                alert("fallo el inicio de sesion")
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+          setLoading(false);
+        }
+      }
+    
+      function handleSubmit(event) {
+        singIn();
+        event.preventDefault();
+      }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -107,10 +106,10 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Iniciar sesión
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
-          <TextField
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+        <form className={classes.form} onSubmit={handleSubmit}>
+        <TextField
+            value={emailuser}
+            onChange={(e) => setEmail(e.target.value)}
             controlId="username"
             variant="outlined"
             margin="normal"
@@ -118,24 +117,22 @@ export default function SignIn() {
             fullWidth
             id="email"
             label="Correo electrónico"
-            //name="email"
+
             autoComplete="email"
             autoFocus
           />
           <TextField
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPass(e.target.value)}
             controlId="password"
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            //name="password"
             label="Contraseña"
             type="password"
             id="password"
             autoComplete="current-password"
-
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -146,7 +143,6 @@ export default function SignIn() {
             fullWidth
             variant="contained"
             color="primary"
-            href="/user"
             className={classes.submit}
             disabled={!validateForm()}
           >

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar_usr() {
     const classes = useStyles();
-
+    
     return (
         <div className={classes.root}>
             <AppBar position="fixed" className={classes.appBar}>

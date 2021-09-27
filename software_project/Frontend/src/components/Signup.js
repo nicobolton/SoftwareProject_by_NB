@@ -19,7 +19,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit">
         Via Salud LTD
       </Link>{' '}
       {new Date().getFullYear()}
@@ -47,41 +47,41 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
+/* DESDE AQUI ES IMPORTANTE, ANTES PURA MIERDA */
 export default function SignUp() {
   const classes = useStyles();
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const [emailuser, setEmailuser] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
-  
+
   function validateForm() {
-    return username.length > 0 && email.length > 0 && password.length > 0 && phone.length > 0;
+    return username.length > 0 && emailuser.length > 0 && password.length > 0 && phone.length > 0;
   }
 
-  async function Register() {
-    if (!loading) {
+  async function singUp(){
+    if(!loading){
       setLoading(true);
-      fetch('http://localhost:3000/signup', {
+      fetch('http://localhost:4000/api/registro', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          user: username,
-          email: email,
-          pass: password,
-          tel: phone
+            user: username,
+            email: emailuser,
+            pass: password,
+            tel: phone
         }),
       })
         .then((response) => response.json())
         .then(async (json) => {
-          if (json.status) {
+          if(json.status){
             alert("Registrado con exito!");
-          } else {
-            alert("Fallo el registro :(");
+          } else{
+            alert("Registrado");
           }
         })
         .catch((error) => {
@@ -92,7 +92,7 @@ export default function SignUp() {
   }
 
   function handleSubmit(event) {
-    Register();
+    singUp()
     event.preventDefault();
   }
 
@@ -106,26 +106,26 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Registrarse
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField
-                value={username}
-                onChange={e => setUsername(e.target.value)}
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="Nombre y Apellido"
-                autoFocus
-              />
+            <TextField
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            autoComplete="fname"
+            name="firstName"
+            variant="outlined"
+            required
+            fullWidth
+            id="firstName"
+            label="Nombre y Apellido"
+            autoFocus
+        />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+            <TextField
+                value={emailuser}
+                onChange={e => setEmailuser(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -133,10 +133,10 @@ export default function SignUp() {
                 label="Correo electrónico"
                 name="email"
                 autoComplete="email"
-              />
+            />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+            <TextField
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 variant="outlined"
@@ -147,10 +147,10 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
+            />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+            <TextField
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
                 variant="outlined"
@@ -159,7 +159,7 @@ export default function SignUp() {
                 name="telefono"
                 label="Telefono"
                 id="phone"
-              />
+            />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
@@ -175,7 +175,6 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={Register}
           >
             Registrarse
           </Button>
