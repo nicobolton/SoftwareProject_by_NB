@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Product() {
+export default function Categorias() {
     const classes = useStyles();
 
     return (
