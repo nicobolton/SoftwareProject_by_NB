@@ -65,7 +65,7 @@ export default function Navbar() {
             </Button>
             <IconButton aria-label="Mostrar items carrito" color="inherit">
               <Badge badgeContent={1} color="secondary"> {/*Color a la compra*/}
-                <ShoppingCart frontSize="large" color="primary" />
+                <ShoppingCart frontsize="large" color="primary" />
               </Badge>
             </IconButton>
           </div>

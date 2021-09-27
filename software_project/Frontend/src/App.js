@@ -7,7 +7,7 @@ import SignIn from './components/Signin';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
 import SignUp from './components/Signup';
 import Profile from './components/User';
-
+import ChangeUserData from './components/ChangeUserData'
 function App() {
   return (
     <Router>
@@ -29,6 +29,11 @@ function App() {
 
           <Route path="/signin">
             <SignIn />
+          </Route>          
+          
+          <Route path="/changeUserData">
+            <Navbar_usr/>
+            <ChangeUserData />
           </Route>
 
           <Route path="/">

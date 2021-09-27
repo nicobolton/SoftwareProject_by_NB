@@ -1,5 +1,6 @@
 import { BorderBottom } from '@material-ui/icons';
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
 
   const Profile = () =>{
@@ -19,11 +20,16 @@ import React from 'react';
                 <div>
                     <h2>Juan Perez</h2>
                     <div style={{display:"flex", justifyContent:"space-between", width:"108%"}}>
+                    
                         <label>Cumpleaños: 21/04/1994</label>
                         <label>Telefono: +56 9 77213412</label>
-                        <button> </button>
                     </div>
 
+                    <div >
+                        <Button varian="outlined" href="/changeUserData">
+                            <strong>Actualizar datos de usuario</strong>
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>
