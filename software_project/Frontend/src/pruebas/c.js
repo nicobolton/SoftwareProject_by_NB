@@ -30,7 +30,7 @@ export default function Usuario(){
                     />
                 </div>
                 <div>
-                    <h2>Juan Perez</h2>
+                    <h2>{data.map(data => <div>{data.usuario}</div>)}</h2>
                     <div style={{display:"flex", justifyContent:"space-between", width:"108%"}}>
                     
                         <label>Cumpleaños: 21/04/1994</label>
@@ -48,3 +48,5 @@ export default function Usuario(){
 
     )
 }
+
+// const variablexd = localStorage.getItem('token');

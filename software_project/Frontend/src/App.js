@@ -10,9 +10,9 @@ import Profile from './components/User';
 import Categorias from './components/categorias';
 import CambiarDatos from './components/ChangeUserData';
 import Historial from './components/historial';
-import CambiarContraseña from './components/ChangePassword';
 import CambiarPassword from './components/ChangePassword';
-
+//import Search from './pruebas/test';
+//import Usuario from './pruebas/c';
 
 function App() {
   return (
@@ -36,10 +36,10 @@ function App() {
             <Profile />
           </Route>
 
-          <Route path="/historial">
+          {/* <Route path="/historial">
             <Navbar_usr />
             <Historial />
-          </Route>
+          </Route> */}
 
           <Route path="/changeUserData">
             <Navbar_usr />
@@ -54,6 +54,11 @@ function App() {
           <Route path="/signin">
             <SignIn />
           </Route>
+          
+          <Route path="/testing">
+            <Usuario/>
+          </Route>
+
 
           <Route path="/">
             <Products />

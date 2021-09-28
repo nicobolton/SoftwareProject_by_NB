@@ -77,7 +77,7 @@ export default function Product(){
 
       <CardActions disableSpacing>
         <IconButton aria-label='Add to Cart'>
-          <AddShoppingCart fontSize='large' />
+          <AddShoppingCart fontsize='large' />
         </IconButton>
         {Array(4)
             .fill()

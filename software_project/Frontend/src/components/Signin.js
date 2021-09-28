@@ -21,7 +21,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="">
         Via Salud LTD
       </Link>{' '}
       {new Date().getFullYear()}
@@ -53,8 +53,8 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
   const[emailuser, setEmail] = useState("");
-    const[password, setPass] = useState("");
-    const[loading, setLoading] = useState(false);
+  const[password, setPass] = useState("");
+  const[loading, setLoading] = useState(false);
 
     function validateForm() {
         return emailuser.length > 0 && password.length > 0;
@@ -79,7 +79,7 @@ export default function SignIn() {
               if(json.status){
                 localStorage.setItem('token', json.token);
                 setLoading(false);
-                window.location.href = "/";
+                window.location.href = "/user";
               } else{
                 alert("fallo el inicio de sesion")
               }

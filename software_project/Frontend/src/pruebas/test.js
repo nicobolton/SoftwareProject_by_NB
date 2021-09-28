@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 export default function Search() {
     const [data, setdata] = useState([]);
-    
+   
     useEffect(() => {
         const getUsers = async () => {
             fetch("http://localhost:4000/api/clientes")

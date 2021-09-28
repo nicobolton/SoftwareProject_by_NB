@@ -41,6 +41,21 @@ const rows = [
 ];
 
 export default function Historial() {
+
+    const [data, setdata] = useState([]);
+   
+    useEffect(() => {
+        const getUsers = async () => {
+            fetch("http://localhost:4000/api/clientes")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setdata(data);
+            });
+        };
+        getUsers().catch(null);
+    }, []);
+
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -55,14 +70,14 @@ export default function Historial() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {data.map( data => (
                         <StyledTableRow key={row.id}>
-                            <StyledTableCell align="right">{row.id}</StyledTableCell>
-                            <StyledTableCell align="right">{row.fecha}</StyledTableCell>
-                            <StyledTableCell align="right">{row.producto}</StyledTableCell>
-                            <StyledTableCell align="right">{row.cantidad}</StyledTableCell>
-                            <StyledTableCell align="right">{row.precio}</StyledTableCell>
-                            <StyledTableCell align="right">{row.subtotal}</StyledTableCell>
+                            <StyledTableCell align="right">{data.id_venta}</StyledTableCell>
+                            <StyledTableCell align="right">{data.fecha}</StyledTableCell>
+                            <StyledTableCell align="right">{Vitaminas}</StyledTableCell>
+                            <StyledTableCell align="right">{data.cantidad}</StyledTableCell>
+                            <StyledTableCell align="right">{data.precio}</StyledTableCell>
+                            <StyledTableCell align="right">{data.subtotal}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

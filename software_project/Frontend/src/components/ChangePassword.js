@@ -57,7 +57,7 @@ export default function CambiarPassword() {
     async function ActualizarCredenciales() {
         if (!loading) {
             setLoading(true);
-            fetch('http://localhost:3000/signup', {
+            fetch('http://localhost:4000/', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -98,7 +98,7 @@ export default function CambiarPassword() {
                     Cambiar Contraseña
                 </Typography>
                 <div>
-                    <img style={{ widht: "160px", heigh: "160px", borderRadius: "80px" }}
+                    <img style={{ widht: "160px", heigh: "160px", borderRadius: "80px" }} alt="Persona" 
                         src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                     />
                 </div>

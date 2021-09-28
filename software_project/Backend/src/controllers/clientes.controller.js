@@ -10,8 +10,9 @@ const config = {
 
 const pool = new Pool(config);
 
+
 const clientes = async (req, res) =>{
-    const response = await pool.query("SELECT * FROM Usuario");
+    const response = await pool.query("SELECT usuario FROM Usuario WHERE id_usuario = 1");
     res.json(response.rows)
 }
 
