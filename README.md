@@ -38,8 +38,7 @@ Además recuerden siempre entrar a la ruta de Fronted para levantar la página
 `npm start`
 
 ## Librerias necesarias Frontend ##
-``npm install @material-ui/core @material-ui/icons`` este es para lo estético
-Para ver lo estético [https://material-ui.com/components/box/]
+``npm install @material-ui/core @material-ui/icons`` este es para ver lo estético [https://material-ui.com/components/box/]
 
 ``npm install react-router-dom`` este sirve para hacer las rutas en la página
 
