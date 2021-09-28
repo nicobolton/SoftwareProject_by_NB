@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useEffect, useState } from 'react';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -43,15 +44,15 @@ const rows = [
 export default function Historial() {
 
     const [data, setdata] = useState([]);
-   
+
     useEffect(() => {
         const getUsers = async () => {
-            fetch("http://localhost:4000/api/clientes")
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                setdata(data);
-            });
+            fetch("http://localhost:4000/api/historial")
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    setdata(data);
+                });
         };
         getUsers().catch(null);
     }, []);
@@ -70,13 +71,13 @@ export default function Historial() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data.map( data => (
-                        <StyledTableRow key={row.id}>
+                    {data.map(data => (
+                        <StyledTableRow key={data.id}>
                             <StyledTableCell align="right">{data.id_venta}</StyledTableCell>
                             <StyledTableCell align="right">{data.fecha}</StyledTableCell>
-                            <StyledTableCell align="right">{Vitaminas}</StyledTableCell>
+                            <StyledTableCell align="right">Vitaminas</StyledTableCell>
                             <StyledTableCell align="right">{data.cantidad}</StyledTableCell>
-                            <StyledTableCell align="right">{data.precio}</StyledTableCell>
+                            <StyledTableCell align="right">3000</StyledTableCell>
                             <StyledTableCell align="right">{data.subtotal}</StyledTableCell>
                         </StyledTableRow>
                     ))}

@@ -36,10 +36,10 @@ function App() {
             <Profile />
           </Route>
 
-          {/* <Route path="/historial">
+          <Route path="/historial">
             <Navbar_usr />
             <Historial />
-          </Route> */}
+          </Route>
 
           <Route path="/changeUserData">
             <Navbar_usr />
@@ -54,10 +54,10 @@ function App() {
           <Route path="/signin">
             <SignIn />
           </Route>
-          
-          <Route path="/testing">
+
+          {/* <Route path="/testing">
             <Usuario/>
-          </Route>
+          </Route> */}
 
 
           <Route path="/">
