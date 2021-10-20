@@ -41,13 +41,13 @@ const rows = [
 
 ];
 
-export default function Historial() {
+export default function Stock() {
 
     const [data, setdata] = useState([]);
 
     useEffect(() => {
         const getUsers = async () => {
-            fetch("http://localhost:4000/api/historial")
+            fetch("http://localhost:4000/api/stock")
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
@@ -62,12 +62,11 @@ export default function Historial() {
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell align="center">ID venta</StyledTableCell>
-                        <StyledTableCell align="center">Fecha</StyledTableCell>
-                        <StyledTableCell align="center">Producto</StyledTableCell>
-                        <StyledTableCell align="center">Cantidad</StyledTableCell>
-                        <StyledTableCell align="center">Precio</StyledTableCell>
-                        <StyledTableCell align="center">Subtotal</StyledTableCell>
+                        <StyledTableCell align="center">SKU</StyledTableCell>
+                        <StyledTableCell align="center">Nombre</StyledTableCell>
+                        <StyledTableCell align="center">Precio </StyledTableCell>
+                        <StyledTableCell align="center">Stock</StyledTableCell>
+
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -77,8 +76,6 @@ export default function Historial() {
                             <StyledTableCell align="center">{data.fecha}</StyledTableCell>
                             <StyledTableCell align="center">Vitaminas</StyledTableCell>
                             <StyledTableCell align="center">{data.cantidad}</StyledTableCell>
-                            <StyledTableCell align="center">3000</StyledTableCell>
-                            <StyledTableCell align="center">{data.subtotal}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

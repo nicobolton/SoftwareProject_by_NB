@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Navbar_usr() {
+export default function Navbar_admin() {
     const classes = useStyles();
 
     return (
@@ -47,8 +47,18 @@ export default function Navbar_usr() {
                         <a href="/"> <img src={Icono} alt="Logo" className={classes.image} /> </a>
                     </IconButton>
                     <div className={classes.button2}>
-                        <Button varian="outlined" href="/categorias">
-                            <strong>Categorías</strong>
+                        <Button varian="outlined" href="">
+                            <strong>Agregar</strong>
+                        </Button>
+                    </div>
+                    <div className={classes.button2}>
+                        <Button varian="outlined" href="">
+                            <strong>Eliminar</strong>
+                        </Button>
+                    </div>
+                    <div className={classes.button2}>
+                        <Button varian="outlined" href="/Stock">
+                            <strong>Stock</strong>
                         </Button>
                     </div>
                     <div className={classes.grow} />
@@ -56,23 +66,9 @@ export default function Navbar_usr() {
                         Via salud LTD.
                     </Typography>
                     <div className={classes.button}>
-                        <Button varian="outlined" href="/perfil">
-                            <strong>Perfil</strong>
-                        </Button>
-                        <Button varian="outlined" href="/historial">
-                            <strong>historial</strong>
-                        </Button>
-                        <Button varian="outlined" href="">
-                            <strong>Sobre Nosotros</strong>
-                        </Button>
                         <Button varian="outlined" href="/App">
                             <strong>Cerrar Sesión</strong>
                         </Button>
-                        <IconButton aria-label="Mostrar items carrito" color="inherit">
-                            <Badge badgeContent={1} color="secondary"> {/*Color a la compra*/}
-                                <ShoppingCart frontSize="large" color="primary" />
-                            </Badge>
-                        </IconButton>
                     </div>
                 </Toolbar>
             </AppBar>
