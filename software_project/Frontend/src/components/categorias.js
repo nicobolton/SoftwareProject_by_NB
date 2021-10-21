@@ -40,7 +40,6 @@ export default function Categorias() {
             <CardMedia
                 className={classes.media}
                 image="https://vidanat.cl/wp-content/uploads/2019/01/calcio-magnesio-vitamina-c-y-d3.png"
-                title="Vitaminas"
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">

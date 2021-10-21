@@ -47,11 +47,12 @@ export default function CambiarDatos() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [dire, setDire] = useState("");
   const [loading, setLoading] = useState(false);
 
   /*no necesita un wait :c?*/ 
   function validateForm() { 
-    return username.length > 0 && email.length > 0 && phone.length > 0;
+    return username.length > 0 || email.length > 0 || phone.length > 0 || dire.length > 0;
   }
 
   async function ActualizarDatosUsuario() {
@@ -66,7 +67,8 @@ export default function CambiarDatos() {
         body: JSON.stringify({
           user: username,
           email: email,
-          tel: phone
+          tel: phone,
+          dir : dire
         }),
       })
         .then((response) => response.json())
@@ -140,7 +142,20 @@ export default function CambiarDatos() {
                 id="phone"
               />
             </Grid>
+            <Grid item xs={12}>
+              <TextField
+                value={dire}
+                onChange={e => setDire(e.target.value)}
+                variant="outlined"
+                fullWidth
+                id="direccion"
+                label="Direccion"
+                name="direccion"
+                autoComplete="direccion"
+              />
+            </Grid>
           </Grid>
+          
           <Button
             disabled={!validateForm()}
             type="submit"

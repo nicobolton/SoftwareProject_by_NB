@@ -2,11 +2,9 @@
 const { Router } = require('express')
 const express = require('express')
 const router = express.Router()
-const {editusr} = require('../controllers/editUser.controller')
-
+const {editUser} = require('../controllers/editUser.controller')
 
 /* APIS */
-router.post('/', editusr)
-
+router.post('/', editUser)
 
 module.exports = router
