@@ -5,38 +5,45 @@ create table Usuario (
   clave varchar(50) not null,
   telefono bigint not null,
   direccion varchar(50),
-  cumplea ñ os date,
   UNIQUE(ID_USUARIO)
 );
-create table Productos (
-  ID_PRODUCTO serial PRIMARY KEY not null,
-  nombre varchar(50) not null,
-  descripcion varchar(50) not null,
-  precio integer not null,
-  sku integer not null,
-  categoria varchar (50) not null,
-  stock integer not null,
-  UNIQUE(nombre)
-);
-create table Venta (
-  ID_VENTA serial PRIMARY KEY not null,
-  id_cliente integer not null,
-  fecha timestamp
-);
-create table DetalleVenta(
-  ID_DETALLEVENTA serial PRIMARY KEY not null,
-  id_venta integer not null,
-  id_producto integer not null,
-  fecha timestamp,
-  cantidad integer not null,
-  subtotal integer not null,
-  precio integer not null
-);
+
 create table Categorias(
   ID_CATEGORIA serial PRIMARY KEY not null,
   nombre varchar(50),
-  descripcion varchar (100)
+  UNIQUE (ID_CATEGORIA)
 );
+
+create table Productos (
+  ID_PRODUCTO serial PRIMARY KEY not null,
+  nombre varchar(50) not null,
+  ID_CATEGORIA serial not null,
+  descripcion text not null,
+  precio integer not null,
+  stock integer not null,
+  UNIQUE(ID_PRODUCTO),
+  CONSTRAINT fk_categoria FOREIGN KEY(ID_CATEGORIA) REFERENCES Categorias(ID_CATEGORIA)
+);
+
+create table Venta (
+  ID_VENTA serial PRIMARY KEY not null,
+  ID_USUARIO serial not null,
+  fecha timestamp,
+  CONSTRAINT fk_usuario FOREIGN KEY(ID_USUARIO) REFERENCES Usuario(ID_USUARIO)
+);
+
+create table DetalleVenta(
+  ID_DETALLEVENTA serial PRIMARY KEY not null,
+  ID_VENTA integer not null,
+  ID_PRODUCTO integer not null,
+  fecha timestamp,
+  cantidad integer not null,
+  subtotal integer not null,
+  precio integer not null,
+  CONSTRAINT fk_venta FOREIGN KEY (ID_VENTA) REFERENCES Venta(ID_VENTA),
+  CONSTRAINT fk_producto FOREIGN KEY (ID_PRODUCTO) REFERENCES Productos(ID_PRODUCTO)
+);
+
 create table Consultas(
   ID_CONSULTAS serial PRIMARY KEY not null,
   correo varchar(50) not null,
