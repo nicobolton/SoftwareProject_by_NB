@@ -11,6 +11,9 @@ import Categorias from './components/categorias';
 import CambiarDatos from './components/ChangeUserData';
 import Historial from './components/historial';
 import CambiarPassword from './components/ChangePassword';
+import AddProducto from './components/addProducto';
+import Navbar_admin from './components/Navbar_admin';
+import DelProducto from './components/delProducto';
 //import Search from './pruebas/test';
 //import Usuario from './pruebas/c';
 
@@ -59,6 +62,19 @@ function App() {
             <Usuario/>
           </Route> */}
 
+          <Route path="/admin">
+            <Navbar_admin/>
+          </Route>
+
+          <Route path="/addproducto">
+            <Navbar_admin/> 
+            <AddProducto/>
+          </Route>
+
+          <Route path="/DelProducto">
+            <Navbar_admin/> 
+            <DelProducto/>
+          </Route>
 
           <Route path="/">
             <Products />

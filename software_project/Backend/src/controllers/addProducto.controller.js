@@ -10,10 +10,15 @@ const config = {
 
 const pool = new Pool(config);
 
-
 const addProducto = async (req, res) => {
-    const response = await pool.query("SELECT * FROM Usuario");
-    res.json(response.rows)
+    console.log("entrando a agregar producto")
+    res.header("Access-Control-Allow-Origin", "*");
+    const { nombre, id_categoria, descripcion, precio, stock} = req.body;
+    const postProducto = 'INSERT INTO Productos (nombre, ID_CATEGORIA, descripcion, precio, stock) values ($1,$2,$3,$4,$5) RETURNING *';
+    const values = [nombre, id_categoria, descripcion, precio, stock];
+    const response = await pool.query(postProducto, values);
+    console.log("Se añadie el producto: \n", response.rows);
+    res.json(1)
 };
 
 

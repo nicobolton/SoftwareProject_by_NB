@@ -6,8 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Icono from "../asset/Icono.png";
-import { ShoppingCart } from '@material-ui/icons';
-import { Badge } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,12 +45,12 @@ export default function Navbar_admin() {
                         <a href="/"> <img src={Icono} alt="Logo" className={classes.image} /> </a>
                     </IconButton>
                     <div className={classes.button2}>
-                        <Button varian="outlined" href="">
+                        <Button varian="outlined" href="/AddProducto">
                             <strong>Agregar</strong>
                         </Button>
                     </div>
                     <div className={classes.button2}>
-                        <Button varian="outlined" href="">
+                        <Button varian="outlined" href="/DelProducto">
                             <strong>Eliminar</strong>
                         </Button>
                     </div>

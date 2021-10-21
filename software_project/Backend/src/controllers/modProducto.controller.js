@@ -11,15 +11,14 @@ const config = {
 const pool = new Pool(config);
 
 const modProducto = async (req, res) => {
-    console.log("Entrando funcion editar usuario");
-    const { nombre, descripcion, precio} = req.body;
-    const response = await poolrpa.query(`UPDATE Productos set nombre = $1, descripcion = $2, precio = $3 where ID_PRODUCTO = $4`,[
-        nombre,
-        descripcion,
-        precio
-    ]);
-    console.log(response);
-    res.json('User Updated Successfully');
+    console.log("entrando a funcion de eliminar")
+    res.header("Access-Control-Allow-Origin", "*");
+    const { idproducto_dele } = req.body;
+    const sqlQuery = 'DELETE FROM Productos WHERE ID_PRODUCTO = $1 RETURNING *';
+    const values = [idproducto_dele];
+    const response = await pool.query(sqlQuery, values);
+    console.log("Se elimino el producto: \n", response.rows);
+    res.json(1);
 }
 
 module.exports = { modProducto };
