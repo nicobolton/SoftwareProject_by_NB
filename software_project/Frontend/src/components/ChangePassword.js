@@ -8,8 +8,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import SignIn from './Signin';
-import Token from './Signin';
 
 function Copyright() {
     return (
@@ -68,7 +66,6 @@ export default function CambiarPassword() {
                 body: JSON.stringify({
                     pass: password,
                     newpass: newpassword,
-                    newpassv: newpasswordverify,
                     id_usuario: localStorage.getItem("token")
                 }),
             })

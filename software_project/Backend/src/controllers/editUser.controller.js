@@ -12,13 +12,13 @@ const pool = new Pool(config);
 
 const editUser = async (req, res) => {
     console.log("Entrando funcion editar usuario");
-    const { usuario, correo, clave, telefono, direccion } = req.body;
-    const response = await poolrpa.query(`UPDATE Usuario set usuario = $1, correo = $2, clave = $3, telefono = $4, direccion = $5 where ID_USUARIO = $5`, [
-        usuario,
-        correo,
-        clave,
-        telefono,
-        direccion
+    const { user, email, tel, dir, id_usuario } = req.body;
+    const response = await pool.query(`UPDATE Usuario set usuario = $1, correo = $2, telefono = $3, direccion = $4 where ID_USUARIO = $5`, [
+        user,
+        email,
+        tel,
+        dir,
+        id_usuario
     ]);
     console.log(response);
     res.json('User Updated Successfully');

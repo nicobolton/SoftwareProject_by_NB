@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.secondary.main,
     },
     form: {
-        width: '100%', 
+        width: '100%',
         marginTop: theme.spacing(3),
     },
     submit: {
@@ -48,7 +48,7 @@ export default function DelProducto() {
     const [loading, setLoading] = useState(false);
 
     function validateForm() {
-        return id_producto.lenght >0;
+        return id_producto.length > 0;
     }
 
     async function ActualizarCredenciales() {
@@ -93,8 +93,8 @@ export default function DelProducto() {
                     Eliminar Producto
                 </Typography>
                 <div>
-                    <img style={{ widht: "160px", heigh: "160px", borderRadius: "80px" }} alt="Persona" 
-                    src="https://vidanat.cl/wp-content/uploads/2019/01/calcio-magnesio-vitamina-c-y-d3.png"
+                    <img style={{ widht: "160px", heigh: "160px", borderRadius: "80px" }} alt="Persona"
+                        src="https://vidanat.cl/wp-content/uploads/2019/01/calcio-magnesio-vitamina-c-y-d3.png"
 
                     />
                 </div>
@@ -115,7 +115,7 @@ export default function DelProducto() {
                             />
                         </Grid>
                     </Grid>
-                    
+
                     <Button
                         disabled={!validateForm()}
                         type="submit"
@@ -125,7 +125,7 @@ export default function DelProducto() {
                         className={classes.submit}
                         onClick={ActualizarCredenciales}
                     >
-                        Actualizar
+                        Eliminar
                     </Button>
                 </form>
             </div>

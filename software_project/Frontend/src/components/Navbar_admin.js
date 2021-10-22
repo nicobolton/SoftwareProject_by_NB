@@ -55,7 +55,7 @@ export default function Navbar_admin() {
                         </Button>
                     </div>
                     <div className={classes.button2}>
-                        <Button varian="outlined" href="/Stock">
+                        <Button varian="outlined" href="/stock">
                             <strong>Stock</strong>
                         </Button>
                     </div>
