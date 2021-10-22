@@ -66,7 +66,7 @@ export default function AddProducto() {
                 },
                 body: JSON.stringify({
                     nombre: name,
-                    ID_CATEGORIA: idcat,
+                    id_categoria: idcat,
                     descripcion: description,
                     precio: price,
                     stock: stock_pro

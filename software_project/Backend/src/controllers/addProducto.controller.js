@@ -17,7 +17,7 @@ const addProducto = async (req, res) => {
     const postProducto = 'INSERT INTO Productos (nombre, ID_CATEGORIA, descripcion, precio, stock) values ($1,$2,$3,$4,$5) RETURNING *';
     const values = [nombre, id_categoria, descripcion, precio, stock];
     const response = await pool.query(postProducto, values);
-    console.log("Se añadie el producto: \n", response.rows);
+    console.log("Se añade el producto: \n", response.rows);
     res.json(1)
 };
 
