@@ -8,6 +8,8 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import SignIn from './Signin';
+import Token from './Signin';
 
 function Copyright() {
     return (
@@ -57,7 +59,7 @@ export default function CambiarPassword() {
     async function ActualizarCredenciales() {
         if (!loading) {
             setLoading(true);
-            fetch('http://localhost:4000/', {
+            fetch('http://localhost:4000/api/editpass', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -66,13 +68,14 @@ export default function CambiarPassword() {
                 body: JSON.stringify({
                     pass: password,
                     newpass: newpassword,
-                    newpassv: newpasswordverify
+                    newpassv: newpasswordverify,
+                    iduser: Token
                 }),
             })
                 .then((response) => response.json())
                 .then(async (json) => {
                     if (json.status) {
-                        alert("Datos actualizados con exito!");
+                        alert("Contraseña actualizada con exito!");
                     } else {
                         alert("Fallo el registro de datos :(");
                     }
@@ -98,7 +101,7 @@ export default function CambiarPassword() {
                     Cambiar Contraseña
                 </Typography>
                 <div>
-                    <img style={{ widht: "160px", heigh: "160px", borderRadius: "80px" }} alt="Persona" 
+                    <img style={{ widht: "160px", heigh: "160px", borderRadius: "80px" }} alt="Persona"
                         src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                     />
                 </div>
