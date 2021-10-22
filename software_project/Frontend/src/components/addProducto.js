@@ -52,7 +52,7 @@ export default function AddProducto() {
     const [loading, setLoading] = useState(false);
 
     function validateForm() {
-        return idcat.lenght >0 && stock_pro.length > 0 && name.length > 0 && price.length > 0 && description.length > 0;
+        return idcat.length > 0 && stock_pro.length > 0 && name.length > 0 && price.length > 0 && description.length > 0;
     }
 
     async function ActualizarCredenciales() {
@@ -66,7 +66,7 @@ export default function AddProducto() {
                 },
                 body: JSON.stringify({
                     nombre: name,
-                    ID_CATEGORIA : idcat,
+                    ID_CATEGORIA: idcat,
                     descripcion: description,
                     precio: price,
                     stock: stock_pro
@@ -101,8 +101,8 @@ export default function AddProducto() {
                     Agregar Producto
                 </Typography>
                 <div>
-                    <img style={{ widht: "160px", heigh: "160px", borderRadius: "80px" }} alt="Persona" 
-                    src="https://vidanat.cl/wp-content/uploads/2019/01/calcio-magnesio-vitamina-c-y-d3.png"
+                    <img style={{ widht: "160px", heigh: "160px", borderRadius: "80px" }} alt="Persona"
+                        src="https://vidanat.cl/wp-content/uploads/2019/01/calcio-magnesio-vitamina-c-y-d3.png"
 
                     />
                 </div>
@@ -127,6 +127,7 @@ export default function AddProducto() {
                                 onChange={e => setIDCategoria(e.target.value)}
                                 variant="outlined"
                                 fullWidth
+                                type="number"
                                 id="name"
                                 label="Categoria del producto"
                                 name="name"
@@ -144,31 +145,31 @@ export default function AddProducto() {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                        <TextField
-                            value={price}
-                            onChange={e => setPrice(e.target.value)}
-                            variant="outlined"
-                            type="number"
-                            fullWidth
-                            name="precio"
-                            label="Precio del producto"
-                            id="precio"
-                        />
+                            <TextField
+                                value={price}
+                                onChange={e => setPrice(e.target.value)}
+                                variant="outlined"
+                                type="number"
+                                fullWidth
+                                name="precio"
+                                label="Precio del producto"
+                                id="precio"
+                            />
                         </Grid>
                         <Grid item xs={12}>
-                        <TextField
-                            value={stock_pro}
-                            onChange={e => setStock(e.target.value)}
-                            variant="outlined"
-                            type="number"
-                            fullWidth
-                            name="stock"
-                            label="Stock del producto"
-                            id="stock"
-                        />
+                            <TextField
+                                value={stock_pro}
+                                onChange={e => setStock(e.target.value)}
+                                variant="outlined"
+                                type="number"
+                                fullWidth
+                                name="stock"
+                                label="Stock del producto"
+                                id="stock"
+                            />
                         </Grid>
                     </Grid>
-                    
+
                     <Button
                         disabled={!validateForm()}
                         type="submit"
@@ -178,7 +179,7 @@ export default function AddProducto() {
                         className={classes.submit}
                         onClick={ActualizarCredenciales}
                     >
-                        Actualizar
+                        Agregar
                     </Button>
                 </form>
             </div>

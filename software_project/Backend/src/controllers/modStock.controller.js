@@ -13,7 +13,7 @@ const pool = new Pool(config);
 const modStock = async (req, res) => {
     res.header("Access-Control-Allow-Origin", "*")
     const { stock_cambio, id_prod } = req.body
-    const response = await pool.query("UPDATE producto set stock=$1 where ID_PRODUCTO =$5" ,[
+    const response = await pool.query("UPDATE producto set stock=$1 where ID_PRODUCTO =$5", [
         stock_cambio,
         id_prod
     ]);

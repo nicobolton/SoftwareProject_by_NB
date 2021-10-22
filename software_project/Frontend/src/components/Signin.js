@@ -52,49 +52,55 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
-  const[emailuser, setEmail] = useState("");
-  const[password, setPass] = useState("");
-  const[loading, setLoading] = useState(false);
+  const [emailuser, setEmail] = useState("");
+  const [password, setPass] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    function validateForm() {
-        return emailuser.length > 0 && password.length > 0;
-      }
-    
-      async function singIn(){
-        if(!loading){
-          setLoading(true);
-          fetch('http://localhost:4000/api/login', {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              email: emailuser,
-              pass: password
-            }),
-          })
-            .then((response) => response.json())
-            .then(async (json) => {
-              if(json.status){
-                localStorage.setItem('token', json.token);
-                setLoading(false);
-                window.location.href = "/user";
-              } else{
-                alert("fallo el inicio de sesion")
-              }
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-          setLoading(false);
-        }
-      }
-    
-      function handleSubmit(event) {
-        singIn();
-        event.preventDefault();
-      }
+  function validateForm() {
+    return emailuser.length > 0 && password.length > 0;
+  }
+
+  async function singIn() {
+    if (!loading) {
+      setLoading(true);
+      fetch('http://localhost:4000/api/login', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: emailuser,
+          pass: password
+        }),
+      })
+        .then((response) => response.json())
+        .then(async (json) => {
+          if (json.status) {
+            localStorage.setItem('token', json.token);
+            setLoading(false);
+            if (json.token === 1) {
+              window.location.href = "/admin";
+            }
+            else {
+              window.location.href = "/user";
+            }
+
+          } else {
+            alert("fallo el inicio de sesion")
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      setLoading(false);
+    }
+  }
+
+  function handleSubmit(event) {
+    singIn();
+    event.preventDefault();
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -107,7 +113,7 @@ export default function SignIn() {
           Iniciar sesión
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
-        <TextField
+          <TextField
             value={emailuser}
             onChange={(e) => setEmail(e.target.value)}
             controlId="username"
