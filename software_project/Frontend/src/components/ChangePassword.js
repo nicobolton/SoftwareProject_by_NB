@@ -69,7 +69,7 @@ export default function CambiarPassword() {
                     pass: password,
                     newpass: newpassword,
                     newpassv: newpasswordverify,
-                    iduser: Token
+                    id_usuario: localStorage.getItem("token")
                 }),
             })
                 .then((response) => response.json())

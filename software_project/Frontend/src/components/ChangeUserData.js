@@ -13,7 +13,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="#">
         Via Salud LTD
       </Link>{' '}
       {new Date().getFullYear()}
@@ -50,7 +50,6 @@ export default function CambiarDatos() {
   const [dire, setDire] = useState("");
   const [loading, setLoading] = useState(false);
 
-  /*no necesita un wait :c?*/ 
   function validateForm() { 
     return username.length > 0 || email.length > 0 || phone.length > 0 || dire.length > 0;
   }
@@ -58,7 +57,7 @@ export default function CambiarDatos() {
   async function ActualizarDatosUsuario() {
     if (!loading) {
       setLoading(true);
-      fetch('http://localhost:4000/', {
+      fetch('http://localhost:4000/api/editusr', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -68,7 +67,8 @@ export default function CambiarDatos() {
           user: username,
           email: email,
           tel: phone,
-          dir : dire
+          dir : dire,
+          id_usuario: localStorage.getItem("token")
         }),
       })
         .then((response) => response.json())
@@ -163,7 +163,6 @@ export default function CambiarDatos() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={ActualizarDatosUsuario}
           >
             Actualizar
           </Button>

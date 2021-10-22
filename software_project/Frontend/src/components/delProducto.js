@@ -13,7 +13,7 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
+            <Link color="inherit" href="#">
                 Via Salud LTD
             </Link>{' '}
             {new Date().getFullYear()}
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.secondary.main,
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%', 
         marginTop: theme.spacing(3),
     },
     submit: {
@@ -44,15 +44,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DelProducto() {
     const classes = useStyles();
-    const [IDPRODUCTODEL, setIDPRODUCTODEL] = useState("");
-    // const [price, setPrice] = useState("");
-    // const [description, setDescription] = useState("");
-    // const [idcat, setIDCategoria] = useState("");
-    // const [stock_pro, setStock] = useState("");
+    const [id_producto, setIDProducto] = useState("");
     const [loading, setLoading] = useState(false);
 
     function validateForm() {
-        return IDPRODUCTODEL.lenght >0;
+        return id_producto.lenght >0;
     }
 
     async function ActualizarCredenciales() {
@@ -65,15 +61,15 @@ export default function DelProducto() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    ID_PRODUCTO: IDPRODUCTODEL
+                    ID_PRODUCTO: id_producto
                 }),
             })
                 .then((response) => response.json())
                 .then(async (json) => {
                     if (json.status) {
-                        alert("Datos actualizados con exito!");
+                        alert("Se elimino con éxtio!");
                     } else {
-                        alert("Fallo el registro de datos :(");
+                        alert("No hay nada que eliminar");
                     }
                 })
                 .catch((error) => {
@@ -106,8 +102,8 @@ export default function DelProducto() {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
-                                value={IDPRODUCTODEL}
-                                onChange={e => setIDPRODUCTODEL(e.target.value)}
+                                value={id_producto}
+                                onChange={e => setIDProducto(e.target.value)}
                                 autoComplete="idProducto"
                                 name="idProducto"
                                 variant="outlined"

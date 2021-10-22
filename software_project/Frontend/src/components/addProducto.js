@@ -13,7 +13,7 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
+            <Link color="inherit" href="#">
                 Via Salud LTD
             </Link>{' '}
             {new Date().getFullYear()}
@@ -47,12 +47,12 @@ export default function AddProducto() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
-    const [idcat, setIDCategoria] = useState("");
+    const [id_categoria, setIDCategoria] = useState("");
     const [stock_pro, setStock] = useState("");
     const [loading, setLoading] = useState(false);
 
     function validateForm() {
-        return idcat.length > 0 && stock_pro.length > 0 && name.length > 0 && price.length > 0 && description.length > 0;
+        return id_categoria.length > 0 && stock_pro.length > 0 && name.length > 0 && price.length > 0 && description.length > 0;
     }
 
     async function ActualizarCredenciales() {
@@ -66,7 +66,7 @@ export default function AddProducto() {
                 },
                 body: JSON.stringify({
                     nombre: name,
-                    id_categoria: idcat,
+                    ID_CATEGORIA: id_categoria,
                     descripcion: description,
                     precio: price,
                     stock: stock_pro
@@ -75,9 +75,9 @@ export default function AddProducto() {
                 .then((response) => response.json())
                 .then(async (json) => {
                     if (json.status) {
-                        alert("Datos actualizados con exito!");
+                        alert("Se ingreso el nuevo producto!");
                     } else {
-                        alert("Fallo el registro de datos :(");
+                        alert("No se a registrado el producto");
                     }
                 })
                 .catch((error) => {
@@ -123,7 +123,7 @@ export default function AddProducto() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                value={idcat}
+                                value={id_categoria}
                                 onChange={e => setIDCategoria(e.target.value)}
                                 variant="outlined"
                                 fullWidth

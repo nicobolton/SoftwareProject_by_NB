@@ -34,13 +34,11 @@ const Profile = () => {
                 <div>
                     <h2>{data.map(data => <div>{data.usuario}</div>)}</h2>
                     <div style={{ display: "flex", justifyContent: "space-between", width: "108%" }}>
-
-                        <label>Cumpleaños: 21/04/1994</label>
                         <label>Telefono: +56 9 77213412</label>
                     </div>
 
                     <div >
-                        <Button varian="outlined" href="/changeUserData">
+                        <Button varian="outlined" href="/editarUsuario">
                             <strong>Actualizar datos de usuario</strong>
                         </Button>
                         <Button varian="outlined" href="/changePassword">
