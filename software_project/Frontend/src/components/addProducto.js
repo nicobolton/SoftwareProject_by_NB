@@ -46,13 +46,14 @@ export default function AddProducto() {
     const classes = useStyles();
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
+    const [brand, setBrand] = useState("");
     const [description, setDescription] = useState("");
     const [id_categoria, setIDCategoria] = useState("");
     const [stock_pro, setStock] = useState("");
     const [loading, setLoading] = useState(false);
 
     function validateForm() {
-        return id_categoria.length > 0 && stock_pro.length > 0 && name.length > 0 && price.length > 0 && description.length > 0;
+        return id_categoria.length > 0 && stock_pro.length > 0 && brand.length > 0 && name.length > 0 && price.length > 0 && description.length > 0;
     }
 
     async function ActualizarCredenciales() {
@@ -67,6 +68,7 @@ export default function AddProducto() {
                 body: JSON.stringify({
                     nombre: name,
                     ID_CATEGORIA: id_categoria,
+                    marca: brand,
                     descripcion: description,
                     precio: price,
                     stock: stock_pro
@@ -131,6 +133,19 @@ export default function AddProducto() {
                                 id="name"
                                 label="Categoria del producto"
                                 name="name"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                value={brand}
+                                onChange={e => setBrand(e.target.value)}
+                                autoComplete="marca"
+                                name="marca"
+                                variant="outlined"
+                                fullWidth
+                                id="marca"
+                                label="Marca del Producto"
+                                autoFocus
                             />
                         </Grid>
                         <Grid item xs={12}>

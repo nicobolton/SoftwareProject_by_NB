@@ -16,6 +16,7 @@ create table Productos (
   ID_PRODUCTO serial PRIMARY KEY not null,
   nombre varchar(50) not null,
   ID_CATEGORIA integer not null,
+  marca varchar(50) not null,
   descripcion text not null,
   precio integer not null,
   stock integer not null,
