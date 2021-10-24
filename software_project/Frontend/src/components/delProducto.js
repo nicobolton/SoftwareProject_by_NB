@@ -66,8 +66,8 @@ export default function DelProducto() {
             })
                 .then((response) => response.json())
                 .then(async (json) => {
-                    if (json.status) {
-                        alert("Se elimino con éxtio!");
+                    if (validateForm) {
+                        alert("Se elimino el producto con éxito!");
                     } else {
                         alert("No hay nada que eliminar");
                     }
@@ -123,7 +123,6 @@ export default function DelProducto() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={ActualizarCredenciales}
                     >
                         Eliminar
                     </Button>

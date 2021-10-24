@@ -12,8 +12,11 @@ const pool = new Pool(config);
 
 
 const clientes = async (req, res) => {
-    const response = await pool.query("SELECT * FROM Usuario");
-    res.json(response.rows)
+    const { id_usuario } = req.body;
+    const query = await pool.query("SELECT * FROM Usuario WHERE id_usuario=$1");
+    const values = [id_usuario];
+    const response = await pool.query(query, values);
+    res.json(query.rows)
 }
 
 

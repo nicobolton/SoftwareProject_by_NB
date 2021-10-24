@@ -14,6 +14,7 @@ import CambiarPassword from './components/ChangePassword';
 import AddProducto from './components/addProducto';
 import Navbar_admin from './components/Navbar_admin';
 import DelProducto from './components/delProducto';
+import Stock from './components/stock';
 //import Search from './pruebas/test';
 //import Usuario from './pruebas/c';
 
@@ -34,7 +35,7 @@ function App() {
             <Navbar_usr />
             <Products />
           </Route>
-          <Route path="/perfil">
+          <Route path="/clientes">
             <Navbar_usr />
             <Profile />
           </Route>
@@ -75,6 +76,11 @@ function App() {
             <Navbar_admin />
             <DelProducto />
           </Route>
+
+          {<Route path="/stock">
+            <Navbar_admin />
+            <Stock />
+          </Route>}
 
           <Route path="/">
             <Products />

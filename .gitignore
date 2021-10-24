@@ -1,0 +1,4 @@
+
+*.json
+software_project/Frontend/package-lock.json
+software_project/Frontend/package.json

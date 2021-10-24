@@ -8,8 +8,17 @@ const Profile = () => {
 
     useEffect(() => {
         const getUsers = async () => {
-            fetch("http://localhost:4000/api/clientes")
-                .then(response => response.json())
+            fetch('http://localhost:4000/api/clientes', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id_usuario: localStorage.getItem("token")
+                }),
+            })
+                .then((response) => response.json())
                 .then(data => {
                     console.log(data);
                     setdata(data);

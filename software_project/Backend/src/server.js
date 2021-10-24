@@ -40,6 +40,8 @@ server.use("/api/agregarProducto", require("./api/agregarProducto"))
 
 server.use("/api/modificarProducto", require("./api/modificarProducto"))
 
+server.use("/api/stock", require("./api/stock"))
+
 server.use("/api/modStock", require("./api/modStock"))
 
 server.listen(port, () => {

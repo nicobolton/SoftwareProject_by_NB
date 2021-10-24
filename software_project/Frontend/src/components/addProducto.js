@@ -76,7 +76,7 @@ export default function AddProducto() {
             })
                 .then((response) => response.json())
                 .then(async (json) => {
-                    if (json.status) {
+                    if (validateForm) {
                         alert("Se ingreso el nuevo producto!");
                     } else {
                         alert("No se a registrado el producto");
@@ -192,7 +192,6 @@ export default function AddProducto() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={ActualizarCredenciales}
                     >
                         Agregar
                     </Button>

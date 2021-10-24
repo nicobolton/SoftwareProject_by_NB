@@ -56,7 +56,7 @@ export default function Navbar_usr() {
                         Via salud LTD.
                     </Typography>
                     <div className={classes.button}>
-                        <Button varian="outlined" href="/perfil">
+                        <Button varian="outlined" href="/clientes">
                             <strong>Perfil</strong>
                         </Button>
                         <Button varian="outlined" href="/historial">
