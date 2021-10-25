@@ -61,8 +61,6 @@ function xd(id){
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    Actúa como activador del metabolismo de carbohidratos y proteinas,
-                    regulando la contracción muscular ayudando a evitar los calambres.
                 </Typography>
             </CardContent>
         </Card>

@@ -62,7 +62,7 @@ export default function Navbar_usr() {
                         <Button varian="outlined" href="/historial">
                             <strong>historial</strong>
                         </Button>
-                        <Button varian="outlined" href="">
+                        <Button varian="outlined" href="/nosotros">
                             <strong>Sobre Nosotros</strong>
                         </Button>
                         <Button varian="outlined" href="/App">
