@@ -45,9 +45,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Stock() {
     const classes = useStyles();
     const [name, setName] = useState("");
-    const [id_producto, setIDProducto] = useState("");
     const [brand, setBrand] = useState("");
-    const [description, setDescription] = useState("");
     const [id_categoria, setIDCategoria] = useState("");
     const [stock_pro, setStock] = useState("");
     const [loading, setLoading] = useState(false);
@@ -66,7 +64,6 @@ export default function Stock() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    // id_producto: id_producto,
                     nombre: name,
                     id_categoria: id_categoria,
                     marca: brand,

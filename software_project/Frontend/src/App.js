@@ -1,5 +1,5 @@
+import React from 'react'
 import './App.css';
-import React from 'react';
 //import Productos from './components/Product';
 import Navbar from './components/Navbar';
 import Navbar_usr from './components/Navbar_usr';
@@ -16,7 +16,7 @@ import AddProducto from './components/addProducto';
 import Navbar_admin from './components/Navbar_admin';
 import DelProducto from './components/delProducto';
 import Stock from './components/Stock';
-
+import Nosotros from './components/aboutus';
 //import Search from './pruebas/test';
 //import Usuario from './pruebas/c';
 
@@ -83,6 +83,11 @@ function App() {
             <Navbar_admin />
             <Stock />
           </Route>}
+
+          <Route path="/nosotros">
+            <Navbar_usr />
+            <Nosotros />
+          </Route>
 
           <Route path="/">
             <Products />
