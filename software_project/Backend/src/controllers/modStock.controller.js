@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 
 const config = {
     user: "postgres",
-    password: "1234",
+    password: "postgres",
     host: "localhost",
     port: 5432,
     database: "viasalud"
@@ -11,15 +11,16 @@ const config = {
 const pool = new Pool(config);
 
 const modStock = async (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*")
-    const { stock_cambio, id_prod } = req.body
-    const response = await pool.query("UPDATE producto set stock=$1 where ID_PRODUCTO =$5", [
-        stock_cambio,
-        id_prod
+    console.log("Entrando funcion modificar Stock");
+    const { nombre, id_categoria, marca, stock } = req.body;
+    const response = await pool.query(`UPDATE Productos set stock = $4 where nombre = $1 and id_categoria = $2 and marca = $3`, [
+        nombre,
+        id_categoria,
+        marca,
+        stock
     ]);
     console.log(response);
-    res.json(response.rows)
+    res.json('Stock actualizado');
 }
-
 
 module.exports = { modStock };

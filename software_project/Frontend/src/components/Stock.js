@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Stock() {
     const classes = useStyles();
     const [name, setName] = useState("");
-    const [price, setPrice] = useState("");
+    const [id_producto, setIDProducto] = useState("");
     const [brand, setBrand] = useState("");
     const [description, setDescription] = useState("");
     const [id_categoria, setIDCategoria] = useState("");
@@ -59,15 +59,16 @@ export default function Stock() {
     async function ActualizarCredenciales() {
         if (!loading) {
             setLoading(true);
-            fetch('http://localhost:4000/api/stock', {
+            fetch('http://localhost:4000/api/modificarStock', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    // id_producto: id_producto,
                     nombre: name,
-                    ID_CATEGORIA: id_categoria,
+                    id_categoria: id_categoria,
                     marca: brand,
                     stock: stock_pro
                 }),
@@ -75,9 +76,9 @@ export default function Stock() {
                 .then((response) => response.json())
                 .then(async (json) => {
                     if (validateForm) {
-                        alert("Se ingreso el nuevo producto!");
+                        alert("Se edito la info de stock!");
                     } else {
-                        alert("No se a registrado el producto");
+                        alert("No se edito");
                     }
                 })
                 .catch((error) => {

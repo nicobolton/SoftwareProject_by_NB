@@ -42,7 +42,7 @@ server.use("/api/modificarProducto", require("./api/modificarProducto"))
 
 server.use("/api/stock", require("./api/stock"))
 
-server.use("/api/modStock", require("./api/modStock"))
+server.use("/api/modificarStock", require("./api/modificarStock"))
 
 server.listen(port, () => {
     console.log(`Servidor ViaSalud corriendo en: http://${ip}:${port}.`)

@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 //import Productos from './components/Product';
 import Navbar from './components/Navbar';
 import Navbar_usr from './components/Navbar_usr';
@@ -14,7 +15,8 @@ import CambiarPassword from './components/ChangePassword';
 import AddProducto from './components/addProducto';
 import Navbar_admin from './components/Navbar_admin';
 import DelProducto from './components/delProducto';
-import Stock from './components/stock';
+import Stock from './components/Stock';
+
 //import Search from './pruebas/test';
 //import Usuario from './pruebas/c';
 
