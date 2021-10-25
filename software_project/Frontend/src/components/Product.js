@@ -11,6 +11,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {AddShoppingCart} from '@material-ui/icons';
+import { useState, useEffect } from 'react';
+// import './fotos'
 
 // creamos el formato para el dinero, además aproxima valores (caso de trabajar dolares)
 var formatter = new Intl.NumberFormat('es-CL', {
@@ -45,6 +47,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Product(){
   const classes = useStyles();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const getProductos = async () => {
+        fetch("http://localhost:4000/api/producto")
+            .then(response => response.json())
+            .then(value => {
+                setData(value);
+                console.log(data)
+                
+            });
+    };
+    getProductos().catch(null);
+}, []);
+
+function xd(id){
+  localStorage.setItem('id_producto',id.target.getAttribute('value'))
+  window.location.href="#"
+}
+
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -52,26 +74,28 @@ export default function Product(){
   };
 
   return (
+    <div> {data.map (data =>(
     <Card className={classes.root}>
       <CardHeader
         action={
         <Typography className={classes.action} variant='h5' color='textSecondary'>
-        {formatter.format(25000)}
+          {formatter.format(data.precio)}
         </Typography>
         }
-        title="Calcio magnesio vitamina C+D3"
-        subheader="10 unidades"
+        title={data.nombre}
+        subheader={data.stock}
       />
       <CardMedia
-        className={classes.media}
-        image="https://vidanat.cl/wp-content/uploads/2019/01/calcio-magnesio-vitamina-c-y-d3.png"
-        title="Vitaminas"
+        className={classes.media} //da el estilo a la wea
+        height="300px"
+        width="300px"
+        image={require("./fotos/"+data.id_producto+".png")}
+        title="productos"
       />
 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        Actúa como activador del metabolismo de carbohidratos y proteinas, 
-        regulando la contracción muscular ayudando a evitar los calambres.
+          {data.descripcion}
         </Typography>
       </CardContent>
 
@@ -79,11 +103,6 @@ export default function Product(){
         <IconButton aria-label='Add to Cart'>
           <AddShoppingCart fontsize='large' />
         </IconButton>
-        {Array(4)
-            .fill()
-            .map((_, i)=>(
-                <p>&#11088;</p>
-            ))}
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -95,13 +114,8 @@ export default function Product(){
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>
-            100 cápsulas
-          </Typography>
-        </CardContent>
-      </Collapse>
     </Card>
+    ))}
+    </div>
   );
 }

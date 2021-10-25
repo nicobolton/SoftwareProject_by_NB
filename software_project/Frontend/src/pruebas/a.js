@@ -1,93 +1,53 @@
-import React, {useState, useEffect} from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React, { useState,useEffect } from "react";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-export default function Login(){
-    const[emailuser, setEmail] = useState("");
-    const[password, setPass] = useState("");
-    const[loading, setLoading] = useState(false);
+export default function Champions() {
 
-    function validateForm() {
-        return emailuser.length > 0 && password.length > 0;
-      }
+
+
+    const [data, setdata] = useState([]);
+
+    useEffect(() => {
+        const getChamps = async () => {
+            fetch("http://localhost:3000/home")
+                .then(response => response.json())
+                .then(value => {
+                    setdata(value);
+                    console.log(data)
+                    
+                });
+        };
+        getChamps().catch(null);
+    }, []);
+
+    function xd(id){
+        localStorage.setItem('idchamp',id.target.getAttribute('value'))
+        window.location.href="/commit"
+    }
     
-      async function singIn(){
-        if(!loading){
-          setLoading(true);
-          fetch('http://localhost:4000/api/login', {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              email: emailuser,
-              pass: password
-            }),
-          })
-            .then((response) => response.json())
-            .then(async (json) => {
-              if(json.status){
-                localStorage.setItem('token', json.token);
-                setLoading(false);
-                window.location.href = "/";
-              } else{
-                alert("fallo el inicio de sesion")
-              }
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-          setLoading(false);
-        }
-      }
-    
-      function handleSubmit(event) {
-        singIn();
-        event.preventDefault();
-      }
-    
-    return (
-        <div className="Login">
-        <form onSubmit={handleSubmit}>
-        <TextField
-            value={emailuser}
-            onChange={(e) => setEmail(e.target.value)}
-            controlId="username"
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Correo electrónico"
-
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            value={password}
-            onChange={(e) => setPass(e.target.value)}
-            controlId="password"
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            label="Contraseña"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-            <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            disabled={!validateForm()}
-          > Ingresar </Button>
-        </form>
-        </div>
+    return(
+        <div Style='background-color: black;
+        margin-left: auto;
+        margin-right: auto;
+        display: table;'>
+        <div className='row'>
+        {data.map(data => (
+            <div className='col-2 mb-2' key={data.id_champ}>
+            <Card Style='width: 14rem'>
+                <Card.Img variant="top" src={"../../iconos/"+data.id_champ+".jpg"}/>
+                <Card.Body>
+                <Card.Title>{data.name}</Card.Title>
+                <Card.Text>
+                    {data.title}
+                </Card.Text>
+                <Button key={data.id_champ} value={data.id_champ} onClick={xd}>Commit</Button>
+                </Card.Body>
+            </Card>
+            </div>
+        ))}</div></div>
+        
     );
-
-
 }

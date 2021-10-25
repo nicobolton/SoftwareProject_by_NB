@@ -15,16 +15,11 @@ export default function Products() {
 
   return (
     <div className={classes.root}>
-       <Grid container spacing={2}>
-           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <Product key={"nombre1"}/>
+       <Grid container rowSpacing={1} columnSpacing={{xs:1, sm:2, md:3}}>
+           <Grid item xs={2} sm={2} md={4}>
+            <Product/>
            </Grid>
-           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <Product key={"nombre2"}/>
-           </Grid>
-           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <Product key={"nombre3"}/>
-           </Grid>
+
       </Grid> 
     </div>
   );

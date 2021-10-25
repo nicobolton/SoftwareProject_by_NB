@@ -10,10 +10,11 @@ const config = {
 
 const pool = new Pool(config);
 
-const historial = async (req, res) => {
-    const response = await pool.query("SELECT id_venta, fecha, cantidad, subtotal FROM DetalleVenta");
+
+const producto = async (req, res) => {
+    console.log("Entrando a la funcion")
+    const response = await pool.query("SELECT * FROM Productos");
     res.json(response.rows)
 }
 
-
-module.exports = { historial };
+module.exports = { producto };

@@ -5,8 +5,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-// creamos el formato para el dinero, además aproxima valores (caso de trabajar dolares)
-
+import { useState, useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,11 +30,30 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Categorias() {
     const classes = useStyles();
+    const [data, setData] = useState([]);
 
+  useEffect(() => {
+    const getProductos = async () => {
+        fetch("http://localhost:4000/api/categoria")
+            .then(response => response.json())
+            .then(value => {
+                setData(value);
+                console.log(data)
+                
+            });
+    };
+    getProductos().catch(null);
+}, []);
+
+function xd(id){
+  localStorage.setItem('id_producto',id.target.getAttribute('value'))
+  window.location.href="#"
+}
     return (
+        <div> {data.map (data =>(
         <Card className={classes.root}>
             <CardHeader
-                title="Nombre categoría"
+                title={data.nombre}
             />
             <CardMedia
                 className={classes.media}
@@ -48,5 +66,7 @@ export default function Categorias() {
                 </Typography>
             </CardContent>
         </Card>
+        ))}</div>
     );
 }
+
