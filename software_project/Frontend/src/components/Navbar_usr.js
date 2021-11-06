@@ -8,6 +8,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Icono from "../asset/Icono.png";
 import { ShoppingCart } from '@material-ui/icons';
 import { Badge } from '@material-ui/core';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Fade from '@mui/material/Fade';
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,13 +43,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar_usr() {
     const classes = useStyles();
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     return (
         <div className={classes.root}>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
-                        <a href="/"> <img src={Icono} alt="Logo" className={classes.image} /> </a>
+                        <a href="/user"> <img src={Icono} alt="Logo" className={classes.image} /> </a>
                     </IconButton>
                     <div className={classes.button2}>
                         <Button varian="outlined" href="/categorias">
@@ -56,9 +69,28 @@ export default function Navbar_usr() {
                         Via salud LTD.
                     </Typography>
                     <div className={classes.button}>
-                        <Button varian="outlined" href="/clientes">
-                            <strong>Perfil</strong>
+
+                        <Button
+                            id="fade-button"
+                            aria-controls="fade-menu"
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            onClick={handleClick}
+                        >
+                            Mi cuenta
                         </Button>
+                        <Menu
+                            id="fade-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            TransitionComponent={Fade}
+                        >
+                            <MenuItem href="/clientes" onClick={handleClose}>Perfil</MenuItem>
+                            <MenuItem href="/editarUsuario" onClick={handleClose} >Actualizar Datos</MenuItem>
+                            <MenuItem href="/changePassword" onClick={handleClose} >Cambiar Contraseña</MenuItem>
+                        </Menu>
+
                         <Button varian="outlined" href="/historial">
                             <strong>historial</strong>
                         </Button>

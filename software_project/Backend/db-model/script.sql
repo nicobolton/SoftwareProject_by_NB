@@ -14,6 +14,7 @@ create table Categorias(
 );
 create table Productos (
   ID_PRODUCTO serial PRIMARY KEY not null,
+  imagen bytea not null,
   nombre varchar(50) not null,
   ID_CATEGORIA integer not null,
   marca varchar(50) not null,

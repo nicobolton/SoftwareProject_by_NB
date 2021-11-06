@@ -42,21 +42,16 @@ export default function Navbar_admin() {
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
-                        <a href="/"> <img src={Icono} alt="Logo" className={classes.image} /> </a>
+                        <a href="/admin"> <img src={Icono} alt="Logo" className={classes.image} /> </a>
                     </IconButton>
                     <div className={classes.button2}>
                         <Button varian="outlined" href="/AddProducto">
-                            <strong>Agregar</strong>
-                        </Button>
-                    </div>
-                    <div className={classes.button2}>
-                        <Button varian="outlined" href="/DelProducto">
-                            <strong>Eliminar</strong>
+                            <strong>Agregar Producto</strong>
                         </Button>
                     </div>
                     <div className={classes.button2}>
                         <Button varian="outlined" href="/stock">
-                            <strong>Stock</strong>
+                            <strong>Productos</strong>
                         </Button>
                     </div>
                     <div className={classes.grow} />

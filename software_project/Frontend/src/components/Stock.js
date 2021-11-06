@@ -1,178 +1,212 @@
-import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { useTheme } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
+import Box from '@mui/material/Box';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableFooter from '@mui/material/TableFooter';
+import TablePagination from '@mui/material/TablePagination';
+import TableHead from "@mui/material/TableHead";
+import TextField from '@mui/material/TextField';
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import LastPageIcon from '@mui/icons-material/LastPage';
 
-function Copyright() {
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14
+    }
+}));
+
+function TablePaginationActions(props) {
+    const theme = useTheme();
+    const { count, page, rowsPerPage, onPageChange } = props;
+
+    const handleFirstPageButtonClick = (event) => {
+        onPageChange(event, 0);
+    };
+
+    const handleBackButtonClick = (event) => {
+        onPageChange(event, page - 1);
+    };
+
+    const handleNextButtonClick = (event) => {
+        onPageChange(event, page + 1);
+    };
+
+    const handleLastPageButtonClick = (event) => {
+        onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+    };
+
     return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="#">
-                Via Salud LTD
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
+        <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+            <IconButton
+                onClick={handleFirstPageButtonClick}
+                disabled={page === 0}
+                aria-label="first page"
+            >
+                {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+            </IconButton>
+            <IconButton
+                onClick={handleBackButtonClick}
+                disabled={page === 0}
+                aria-label="previous page"
+            >
+                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+            </IconButton>
+            <IconButton
+                onClick={handleNextButtonClick}
+                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                aria-label="next page"
+            >
+                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+            </IconButton>
+            <IconButton
+                onClick={handleLastPageButtonClick}
+                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                aria-label="last page"
+            >
+                {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+            </IconButton>
+        </Box>
     );
 }
 
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(3),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-}));
+TablePaginationActions.propTypes = {
+    count: PropTypes.number.isRequired,
+    onPageChange: PropTypes.func.isRequired,
+    page: PropTypes.number.isRequired,
+    rowsPerPage: PropTypes.number.isRequired,
+};
 
-export default function Stock() {
-    const classes = useStyles();
-    const [name, setName] = useState("");
-    const [brand, setBrand] = useState("");
-    const [id_categoria, setIDCategoria] = useState("");
-    const [stock_pro, setStock] = useState("");
-    const [loading, setLoading] = useState(false);
+function createData(name, calories, stock, fat) {
+    return { name, calories, stock, fat };
+}
 
-    function validateForm() {
-        return id_categoria.length > 0 && stock_pro.length > 0 && brand.length > 0 && name.length > 0;
-    }
+const rows = [
+    createData('Cupcake', 305, 5, 3.7),
+    createData('Donut', 452, 6, 25.0),
+    createData('Eclair', 262, 15, 16.0),
+    createData('Frozen yoghurt', 159, 5, 6.0),
+    createData('Gingerbread', 356, 5, 16.0),
+    createData('Honeycomb', 408, 5, 3.2),
+    createData('Ice cream sandwich', 237, 5, 9.0),
+    createData('Jelly Bean', 375, 5, 0.0),
+    createData('KitKat', 518, 5, 26.0),
+    createData('Lollipop', 392, 5, 0.2),
+    createData('Marshmallow', 318, 5, 0),
+    createData('Nougat', 360, 5, 19.0),
+    createData('Oreo', 437, 5, 18.0),
+    createData('Oreo', 437, 5, 18.0),
+    createData('Oreo', 437, 5, 18.0),
+    createData('Oreo', 437, 5, 18.0),
+].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
-    async function ActualizarCredenciales() {
-        if (!loading) {
-            setLoading(true);
-            fetch('http://localhost:4000/api/modificarStock', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    nombre: name,
-                    id_categoria: id_categoria,
-                    marca: brand,
-                    stock: stock_pro
-                }),
-            })
-                .then((response) => response.json())
-                .then(async (json) => {
-                    if (validateForm) {
-                        alert("Se edito la info de stock!");
-                    } else {
-                        alert("No se edito");
-                    }
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-            setLoading(false);
-        }
-    }
+export default function CustomPaginationActionsTable() {
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-    function handleSubmit(event) {
-        ActualizarCredenciales();
-        event.preventDefault();
-    }
+    // Avoid a layout jump when reaching the last page with empty rows.
+    const emptyRows =
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
+        <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+                <TableHead>
+                    <TableRow>
+                        <StyledTableCell align="center">ID</StyledTableCell>
+                        <StyledTableCell align="center">Nombre</StyledTableCell>
+                        <StyledTableCell align="center">Precio</StyledTableCell>
+                        <StyledTableCell align="center">Mod Stock</StyledTableCell>
+                        <StyledTableCell align="center">Editar</StyledTableCell>
+                        <StyledTableCell align="center">Eliminar</StyledTableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {(rowsPerPage > 0
+                        ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        : rows
+                    ).map((row) => (
+                        <TableRow key={row.name}>
+                            <TableCell component="th" align="center" scope="row">
+                                {row.name}
+                            </TableCell>
+                            <TableCell style={{ width: 160 }} align="center">
+                                {row.calories}
+                            </TableCell>
+                            <TableCell style={{ width: 160 }} align="center">
+                                {row.fat}
+                            </TableCell>
+                            <TableCell style={{ width: 100 }} align="center">
+                                <button style={{ width: 20 }}>
+                                    -
+                                </button>
+                                <TextField id="outlined-basic" style={{ width: 50 }} label={row.stock} variant="outlined" />
+                                <button style={{ width: 20 }}>
+                                    +
+                                </button>
+                            </TableCell>
+                            <TableCell style={{ width: 160 }} align="center" >
+                                <button>
+                                    Editar
+                                </button>
+                            </TableCell>
+                            <TableCell style={{ width: 160 }} align="center" >
+                                <button>
+                                    Eliminar
+                                </button>
+                            </TableCell>
+                        </TableRow>
+                    ))}
 
-                <Typography component="h1" variant="h5">
-                    Modificar Stock del Producto
-                </Typography>
-                <div>
-                    <img style={{ widht: "160px", heigh: "160px", borderRadius: "80px" }} alt="Persona"
-                        src="https://vidanat.cl/wp-content/uploads/2019/01/calcio-magnesio-vitamina-c-y-d3.png"
-
-                    />
-                </div>
-                <form className={classes.form} onSubmit={handleSubmit} noValidate>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                value={name}
-                                onChange={e => setName(e.target.value)}
-                                autoComplete="nombre"
-                                name="nombre"
-                                variant="outlined"
-                                fullWidth
-                                id="nombre"
-                                label="Nombre del Producto"
-                                autoFocus
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                value={id_categoria}
-                                onChange={e => setIDCategoria(e.target.value)}
-                                variant="outlined"
-                                fullWidth
-                                type="number"
-                                id="name"
-                                label="Categoria del producto"
-                                name="name"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                value={brand}
-                                onChange={e => setBrand(e.target.value)}
-                                autoComplete="marca"
-                                name="marca"
-                                variant="outlined"
-                                fullWidth
-                                id="marca"
-                                label="Marca del Producto"
-                                autoFocus
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                value={stock_pro}
-                                onChange={e => setStock(e.target.value)}
-                                variant="outlined"
-                                type="number"
-                                fullWidth
-                                name="stock"
-                                label="Stock del producto"
-                                id="stock"
-                            />
-                        </Grid>
-                    </Grid>
-
-                    <Button
-                        disabled={!validateForm()}
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Actualizar Stock
-                    </Button>
-                </form>
-            </div>
-            <Box mt={5}>
-                <Copyright />
-            </Box>
-        </Container>
+                    {emptyRows > 0 && (
+                        <TableRow style={{ height: 53 * emptyRows }}>
+                            <TableCell colSpan={6} />
+                        </TableRow>
+                    )}
+                </TableBody>
+                <TableFooter>
+                    <TableRow>
+                        <TablePagination
+                            rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                            colSpan={3}
+                            count={rows.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            SelectProps={{
+                                inputProps: {
+                                    'aria-label': 'rows per page',
+                                },
+                                native: true,
+                            }}
+                            onPageChange={handleChangePage}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                            ActionsComponent={TablePaginationActions}
+                        />
+                    </TableRow>
+                </TableFooter>
+            </Table>
+        </TableContainer>
     );
 }

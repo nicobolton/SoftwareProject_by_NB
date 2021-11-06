@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddProducto() {
     const classes = useStyles();
+    const [image, setImage] = useState("");
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [brand, setBrand] = useState("");
@@ -66,6 +67,7 @@ export default function AddProducto() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    imagen: image,
                     nombre: name,
                     ID_CATEGORIA: id_categoria,
                     marca: brand,
@@ -110,6 +112,17 @@ export default function AddProducto() {
                 </div>
                 <form className={classes.form} onSubmit={handleSubmit} noValidate>
                     <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                value={image}
+                                onChange={e => setImage(e.target.value)}
+                                name="imagen"
+                                type="file"
+                                variant="outlined"
+                                fullWidth
+                                id="imagen"
+                            />
+                        </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 value={name}

@@ -42,10 +42,10 @@ function App() {
             <Profile />
           </Route>
 
-          {/* <Route path="/historial">
+          {<Route path="/historial">
             <Navbar_usr />
             <Historial />
-          </Route> */}
+          </Route>}
 
           <Route path="/editarUsuario">
             <Navbar_usr />
