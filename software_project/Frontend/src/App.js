@@ -17,6 +17,8 @@ import Navbar_admin from './components/Navbar_admin';
 import DelProducto from './components/delProducto';
 import Stock from './components/Stock';
 import Nosotros from './components/aboutus';
+import editProductos from './components/editProducto';
+import editProducto from './components/editProducto';
 //import Search from './pruebas/test';
 //import Usuario from './pruebas/c';
 
@@ -72,6 +74,11 @@ function App() {
           <Route path="/addproducto">
             <Navbar_admin />
             <AddProducto />
+          </Route>
+
+          <Route path="/editProducto">
+            <Navbar_admin />
+            <editProducto />
           </Route>
 
           <Route path="/DelProducto">

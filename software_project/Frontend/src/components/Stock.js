@@ -4,6 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import { styled } from "@mui/material/styles";
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
+import { Link } from 'react-router-dom'
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableFooter from '@mui/material/TableFooter';
@@ -18,6 +19,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import { useState, useEffect } from 'react';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -113,9 +115,56 @@ const rows = [
     createData('Oreo', 437, 5, 18.0),
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
-export default function CustomPaginationActionsTable() {
+export default function Stock() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+    const [id, sedId] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState([]);
+
+    async function modprod() {
+        if (!loading) {
+            setLoading(true);
+            fetch('http://localhost:4000/api/editProducto', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: id,
+                    id_usuario: localStorage.getItem("token")
+                }),
+            })
+                .then((response) => response.json())
+                .then(async (json) => {
+                    if (json.status) {
+                        alert("Producto editado con exito!");
+                    } else {
+                        alert("Falló la edición del producto :(");
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        const getProductos = async () => {
+            fetch("http://localhost:4000/api/producto")
+                .then(response => response.json())
+                .then(value => {
+                    setData(value);
+                    console.log(data)
+                    const id = data.id_producto;
+                    //var foto = Base64.getEncoder().encodeToString(data.imagen);
+                });
+        };
+        getProductos().catch(null);
+    }, []);
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
@@ -131,6 +180,7 @@ export default function CustomPaginationActionsTable() {
     };
 
     return (
+
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
                 <TableHead>
@@ -144,47 +194,51 @@ export default function CustomPaginationActionsTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {(rowsPerPage > 0
-                        ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        : rows
-                    ).map((row) => (
-                        <TableRow key={row.name}>
-                            <TableCell component="th" align="center" scope="row">
-                                {row.name}
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="center">
-                                {row.calories}
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="center">
-                                {row.fat}
-                            </TableCell>
-                            <TableCell style={{ width: 100 }} align="center">
-                                <button style={{ width: 20 }}>
-                                    -
-                                </button>
-                                <TextField id="outlined-basic" style={{ width: 50 }} label={row.stock} variant="outlined" />
-                                <button style={{ width: 20 }}>
-                                    +
-                                </button>
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="center" >
-                                <button>
-                                    Editar
-                                </button>
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="center" >
-                                <button>
-                                    Eliminar
-                                </button>
-                            </TableCell>
-                        </TableRow>
-                    ))}
+
+                    {
+                        data.map(data => (
+                            <TableRow key={data.id_producto}>
+                                <TableCell component="th" style={{ width: 160 }} align="center" scope="row">
+                                    {data.id_producto}
+                                </TableCell>
+                                <TableCell style={{ width: 160 }} align="center">
+                                    {data.nombre}
+                                </TableCell>
+                                <TableCell style={{ width: 160 }} align="center">
+                                    {data.precio}
+                                </TableCell>
+                                <TableCell style={{ width: 100 }} align="center">
+                                    <button style={{ width: 20 }}>
+                                        -
+                                    </button>
+                                    <TextField id="outlined-basic" style={{ width: 50 }} label={data.stock} variant="outlined" />
+                                    <button style={{ width: 20 }}>
+                                        +
+                                    </button>
+                                </TableCell>
+                                <TableCell style={{ width: 160 }} align="center" >
+                                    <Link to="/editProducto">
+                                        <button>
+                                            Editar
+                                        </button>
+                                    </Link>
+                                </TableCell>
+                                <TableCell style={{ width: 160 }} align="center" >
+                                    <button>
+                                        Eliminar
+                                    </button>
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    }
 
                     {emptyRows > 0 && (
                         <TableRow style={{ height: 53 * emptyRows }}>
                             <TableCell colSpan={6} />
                         </TableRow>
+
                     )}
+
                 </TableBody>
                 <TableFooter>
                     <TableRow>
