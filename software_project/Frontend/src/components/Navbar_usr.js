@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom'
 import IconButton from '@material-ui/core/IconButton';
 import Icono from "../asset/Icono.png";
 import { ShoppingCart } from '@material-ui/icons';
@@ -86,9 +87,9 @@ export default function Navbar_usr() {
                             onClose={handleClose}
                             TransitionComponent={Fade}
                         >
-                            <MenuItem href="/clientes" onClick={handleClose}>Perfil</MenuItem>
-                            <MenuItem href="/editarUsuario" onClick={handleClose} >Actualizar Datos</MenuItem>
-                            <MenuItem href="/changePassword" onClick={handleClose} >Cambiar Contraseña</MenuItem>
+                            <Link to="/clientes"><MenuItem onClick={handleClose}>Perfil</MenuItem></Link>
+                            <Link to="/editarUsuario"><MenuItem onClick={handleClose} >Actualizar Datos</MenuItem></Link>
+                            <Link to="/changePassword"><MenuItem onClick={handleClose} >Cambiar Contraseña</MenuItem> </Link>
                         </Menu>
 
                         <Button varian="outlined" href="/historial">

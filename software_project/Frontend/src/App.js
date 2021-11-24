@@ -19,6 +19,7 @@ import Stock from './components/Stock';
 import Nosotros from './components/aboutus';
 import editProductos from './components/editProducto';
 import editProducto from './components/editProducto';
+import Product from './components/Product';
 //import Search from './pruebas/test';
 //import Usuario from './pruebas/c';
 

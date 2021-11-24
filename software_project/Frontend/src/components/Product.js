@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Product() {
+export default function Product({ product: { id_producto, imagen, nombre, id_categoria, marca, descripcion, precio, stock } }) {
   const classes = useStyles();
   const [data, setData] = useState([]);
 
@@ -75,48 +75,45 @@ export default function Product() {
   };
 
   return (
-    <div> {data.map(data => (
-      <Card className={classes.root}>
-        <CardHeader
-          action={
-            <Typography className={classes.action} variant='h5' color='textSecondary'>
-              {formatter.format(data.precio)}
-            </Typography>
-          }
-          title={data.nombre}
-          subheader={data.stock}
-        />
-        <CardMedia
-          className={classes.media} //da el estilo a la wea
-          height="300px"
-          width="300px"
-          image={require("./fotos/" + data.id_producto + ".png")}
-          title="productos"
-        />
-
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {data.descripcion}
+    <Card className={classes.root}>
+      <CardHeader
+        action={
+          <Typography className={classes.action} variant='h5' color='textSecondary'>
+            {formatter.format(precio)}
           </Typography>
-        </CardContent>
+        }
+        title={nombre}
+        subheader={stock}
+      />
+      <CardMedia
+        className={classes.media} //da el estilo a la wea
+        height="300px"
+        width="300px"
+        image={require("./fotos/" + id_producto + ".png")}
+        title="productos"
+      />
 
-        <CardActions disableSpacing>
-          <IconButton aria-label='Add to Cart'>
-            <AddShoppingCart fontsize='large' />
-          </IconButton>
-          <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-      </Card>
-    ))}
-    </div>
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {descripcion}
+        </Typography>
+      </CardContent>
+
+      <CardActions disableSpacing>
+        <IconButton aria-label='Add to Cart'>
+          <AddShoppingCart fontsize='large' />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+      </CardActions>
+    </Card>
   );
 }
