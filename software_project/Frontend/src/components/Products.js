@@ -34,7 +34,7 @@ export default function Products() {
         {
           data.map(data => (
 
-            <Grid item xs={2} sm={2} md={4}>
+            <Grid item xs={2} sm={2} md={3}>
               <Product key={data.id_producto} product={data} />
             </Grid>
           ))}

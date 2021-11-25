@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { styled } from "@mui/material/styles";
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -14,6 +15,7 @@ import TextField from '@mui/material/TextField';
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Button from '@material-ui/core/Button';
 import IconButton from '@mui/material/IconButton';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -92,6 +94,27 @@ TablePaginationActions.propTypes = {
     rowsPerPage: PropTypes.number.isRequired,
 };
 
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%',
+        marginTop: theme.spacing(3),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+}));
+
+
 function createData(name, calories, stock, fat) {
     return { name, calories, stock, fat };
 }
@@ -119,9 +142,16 @@ export default function Stock() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+    const classes = useStyles();
+    const [id_producto, setIDProducto] = useState("");
     const [id, sedId] = useState("");
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
+
+    function validateForm() {
+        return id_producto.length > 0;
+    }
+
 
     async function modprod() {
         if (!loading) {
@@ -166,6 +196,39 @@ export default function Stock() {
         getProductos().catch(null);
     }, []);
 
+    async function EliminarProd() {
+        if (!loading) {
+            setLoading(true);
+            fetch('http://localhost:4000/api/modificarProducto', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ID_PRODUCTO: id_producto
+                }),
+            })
+                .then((response) => response.json())
+                .then(async (json) => {
+                    if (validateForm) {
+                        alert("Se eliminó el producto con éxito!");
+                    } else {
+                        alert("No hay nada que eliminar");
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            setLoading(false);
+        }
+    }
+
+    function handleSubmit(event) {
+        EliminarProd();
+        event.preventDefault();
+    }
+
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -197,7 +260,7 @@ export default function Stock() {
 
                     {
                         data.map(data => (
-                            <TableRow key={data.id_producto}>
+                            <TableRow value={id_producto} key={data.id_producto}>
                                 <TableCell component="th" style={{ width: 160 }} align="center" scope="row">
                                     {data.id_producto}
                                 </TableCell>
@@ -217,16 +280,27 @@ export default function Stock() {
                                     </button>
                                 </TableCell>
                                 <TableCell style={{ width: 160 }} align="center" >
-                                    <Link to="/editProducto">
-                                        <button>
+                                    <Link to="/editar">
+                                        <Button
+                                            type="submit"
+                                            fullWidth
+                                            variant="contained"
+                                            className={classes.submit}
+                                        >
+
                                             Editar
-                                        </button>
+                                        </Button>
                                     </Link>
                                 </TableCell>
-                                <TableCell style={{ width: 160 }} align="center" >
-                                    <button>
+                                <TableCell onSubmit={handleSubmit} style={{ width: 160 }} align="center" noValidate >
+                                    <Button
+                                        type="submit"
+                                        fullWidth
+                                        variant="contained"
+                                        className={classes.submit}
+                                    >
                                         Eliminar
-                                    </button>
+                                    </Button>
                                 </TableCell>
                             </TableRow>
                         ))
@@ -262,5 +336,6 @@ export default function Stock() {
                 </TableFooter>
             </Table>
         </TableContainer>
+
     );
 }
