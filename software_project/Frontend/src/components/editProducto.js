@@ -1,4 +1,4 @@
-/*import * as React from 'react';
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -24,7 +24,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
         backgroundColor: theme.palette.action.hover,
     },
-    //hide last border
     '&:last-child td, &:last-child th': {
         border: 0,
     },
@@ -42,28 +41,21 @@ const rows = [
 
 ];
 
-export default function editProducto() {
 
-    const [data, setData] = useState([]);
+export default function EditProducto() {
+    const [productos, setProductos] = useState([]);
 
     useEffect(() => {
-        const getProd = async () => {
-            fetch("http:localhost:4000/api/editProducto")
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    setData(data);
-                });
-        };
-        getProd().catch(null);
-    }, []);
+        fetch('http://localhost:4000/producto')
+            .then(response => response.json())
+            .then(data => setProductos(data))
+    } , [])
 
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <Table sx={{ minWidth: 700}} aria-label="customized table">
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell align="center">ID venta</StyledTableCell>
                         <StyledTableCell align="center">Fecha</StyledTableCell>
                         <StyledTableCell align="center">Producto</StyledTableCell>
                         <StyledTableCell align="center">Cantidad</StyledTableCell>
@@ -72,18 +64,20 @@ export default function editProducto() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data.map(data => (
-                        <StyledTableRow key={data.id}>
-                            <StyledTableCell align="center">{data.id_venta}</StyledTableCell>
-                            <StyledTableCell align="center">{data.fecha}</StyledTableCell>
-                            <StyledTableCell align="center">Vitaminas</StyledTableCell>
-                            <StyledTableCell align="center">{data.cantidad}</StyledTableCell>
-                            <StyledTableCell align="center">3000</StyledTableCell>
-                            <StyledTableCell align="center">{data.subtotal}</StyledTableCell>
+                    {productos.map(productos => (
+                        <StyledTableRow key={productos.id}>
+                            <StyledTableCell component="th" scope="row">
+                                {productos.fecha}
+                            </StyledTableCell>
+                            <StyledTableCell align="right">{productos.producto}</StyledTableCell>
+                            <StyledTableCell align="right">{productos.cantidad}</StyledTableCell>
+                            <StyledTableCell align="right">{productos.precio}</StyledTableCell>
+                            <StyledTableCell align="right">{productos.subtotal}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>
             </Table>
         </TableContainer>
     );
-}*/
+
+}

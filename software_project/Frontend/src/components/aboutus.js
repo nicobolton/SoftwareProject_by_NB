@@ -5,6 +5,7 @@ import MuiGrid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
+import ButtonMailto from './correo';
 
 function Copyright() {
   return (
@@ -18,6 +19,8 @@ function Copyright() {
     </Typography>
   );
 }
+
+
 
 const Root = styled('div')(({ theme }) => ({
   width: '100%',
@@ -47,7 +50,8 @@ export default function DividerText() {
   const contact = (
     <div>
       <h4> {`Teléfono: (+56) 2 87498765 `} </h4>
-      <h4> {`Correo: Vidanatural_x@hotmail.com`} </h4>
+      <h4> {`Email:`}<ButtonMailto label="Vidanatural_x@hotmail.com" mailto="mailto:Vidanatural_x@hotmail.com?subject=Subject'body=Body%20goes%20here" /> </h4>
+     
     </div>
   );
   const horario = (
