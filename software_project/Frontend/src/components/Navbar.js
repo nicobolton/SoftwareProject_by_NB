@@ -63,6 +63,9 @@ export default function Navbar() {
             <Button varian="outlined" href="/signin">
               <strong>Ingresar</strong>
             </Button>
+            <Button varian="outlined" href="/supp">
+              <strong>Soporte</strong>
+            </Button>
             <IconButton aria-label="Mostrar items carrito" color="inherit">
               <Badge badgeContent={1} color="secondary"> {/*Color a la compra*/}
                 <ShoppingCart frontsize="large" color="primary" />

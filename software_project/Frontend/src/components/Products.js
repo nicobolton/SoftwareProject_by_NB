@@ -15,21 +15,24 @@ const useStyles = makeStyles((theme) => ({
 export default function Products() {
   const classes = useStyles();
   const [data, setData] = useState([]);
+  const [buqueda, setBusqueda]= useState("");
+
   useEffect(() => {
     const getProductos = async () => {
       fetch("http://localhost:4000/api/producto")
         .then(response => response.json())
         .then(value => {
           setData(value);
-          console.log(data)
           //var foto = Base64.getEncoder().encodeToString(data.imagen);
         });
     };
     getProductos().catch(null);
   }, []);
 
+
   return (
     <div className={classes.root}>
+      
       <Grid container spacing={1} >
         {
           data.map(data => (

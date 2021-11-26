@@ -41,11 +41,15 @@ create table DetalleVenta(
   CONSTRAINT fk_venta FOREIGN KEY (ID_VENTA) REFERENCES Venta(ID_VENTA),
   CONSTRAINT fk_producto FOREIGN KEY (ID_PRODUCTO) REFERENCES Productos(ID_PRODUCTO)
 );
-create table Consultas(
-  ID_CONSULTAS serial PRIMARY KEY not null,
-  correo varchar(50) not null,
-  estado boolean,
-  titulo varchar(50) not null,
-  descripcion varchar(100) not null,
-  respuesta varchar(50) not null
+
+CREATE TABLE Consultas(
+    id SERIAL PRIMARY KEY,
+    correo VARCHAR(50) NOT NULL,
+    estado BOOLEAN,
+    titulo VARCHAR,
+    descripcion VARCHAR,
+    respuesta VARCHAR,
+    CONSTRAINT fk_usuario
+        FOREIGN KEY (correo)
+        REFERENCES Usuario(correo)
 );

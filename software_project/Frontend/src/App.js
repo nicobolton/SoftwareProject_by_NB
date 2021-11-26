@@ -20,6 +20,7 @@ import Nosotros from './components/aboutus';
 import editProductos from './components/editProducto';
 import editProducto from './components/editProducto';
 import Product from './components/Product';
+import Soporte from './components/soporte';
 //import Search from './pruebas/test';
 //import Usuario from './pruebas/c';
 
@@ -81,6 +82,10 @@ function App() {
           <Route path="/editProducto">
             <Navbar_admin />
             <editProducto />
+          </Route>
+
+          <Route path="/supp">
+            <Soporte/>
           </Route>
 
           <Route path="/DelProducto">
