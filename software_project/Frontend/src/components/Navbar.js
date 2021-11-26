@@ -49,11 +49,6 @@ export default function Navbar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
             <a href="/"> <img src={Icono} alt="Logo" className={classes.image} /> </a>
           </IconButton>
-          <div className={classes.button2}>
-            <Button varian="outlined" href="/categorias">
-              <strong>Categorías</strong>
-            </Button>
-          </div>
           <div className={classes.grow} />
           <Typography variant="h6" color="textPrimary" component="p" >
             Via salud LTD.

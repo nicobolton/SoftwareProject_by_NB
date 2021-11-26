@@ -11,16 +11,14 @@ const config = {
 const pool = new Pool(config);
 
 const stock = async (req, res) => {
-    console.log("ENTRANDO A CAMBIAR STOCK");
-    const { nombre, ID_CATEGORIA, marca, stock } = req.body;
-    const response = await pool.query(`UPDATE productos set stock = $4 where nombre = $1 and ID_CATEGORIA = $2 and marca = $3`, [
-        nombre,
-        ID_CATEGORIA,
-        marca,
-        stock
-    ]);
-    console.log(response);
-    res.json('Stock Updated Successfully')
+    console.log("entrando a funcion de eliminar")
+    res.header("Access-Control-Allow-Origin", "*");
+    const { ID_PRODUCTO } = req.body;
+    const sqlQuery = 'DELETE FROM Productos WHERE ID_PRODUCTO = $1 RETURNING *';
+    const values = [ID_PRODUCTO];
+    const response = await pool.query(sqlQuery, values);
+    console.log("Se elimino el producto: \n", response.rows);
+    res.json(1);
 }
 
 module.exports = { stock };

@@ -54,6 +54,11 @@ export default function Navbar_admin() {
                             <strong>Productos</strong>
                         </Button>
                     </div>
+                    <div>
+                        <Button varian="outlined" href="/suppres">
+                            <strong>Soporte</strong>
+                        </Button>
+                    </div>
                     <div className={classes.grow} />
                     <Typography variant="h6" color="textPrimary" component="p" >
                         Via salud LTD.

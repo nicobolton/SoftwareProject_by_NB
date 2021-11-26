@@ -260,7 +260,7 @@ export default function Stock() {
 
                     {
                         data.map(data => (
-                            <TableRow value={id_producto} key={data.id_producto}>
+                            <TableRow key={data.id_producto}>
                                 <TableCell component="th" style={{ width: 160 }} align="center" scope="row">
                                     {data.id_producto}
                                 </TableCell>
@@ -280,7 +280,7 @@ export default function Stock() {
                                     </button>
                                 </TableCell>
                                 <TableCell style={{ width: 160 }} align="center" >
-                                    <Link to="/editar">
+                                    <Link to="/historial">
                                         <Button
                                             type="submit"
                                             fullWidth
@@ -292,15 +292,22 @@ export default function Stock() {
                                         </Button>
                                     </Link>
                                 </TableCell>
-                                <TableCell onSubmit={handleSubmit} style={{ width: 160 }} align="center" noValidate >
-                                    <Button
-                                        type="submit"
-                                        fullWidth
-                                        variant="contained"
-                                        className={classes.submit}
-                                    >
-                                        Eliminar
-                                    </Button>
+                                <TableCell style={{ width: 160 }} align="center"  >
+                                    <div onSubmit={handleSubmit} noValidate>
+                                        <Button
+                                            //disabled={!validateForm()}
+                                            type="submit"
+                                            value={id_producto}
+                                            onChange={e => setIDProducto(e.target.value)}
+                                            fullWidth
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.submit}
+                                        >
+                                            Eliminar
+                                        </Button>
+                                    </div>
+
                                 </TableCell>
                             </TableRow>
                         ))

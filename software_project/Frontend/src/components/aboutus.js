@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@mui/material/Divider';
 import MuiGrid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
@@ -20,6 +21,19 @@ function Copyright() {
   );
 }
 
+const useStyles = makeStyles((theme) => ({
+  texto: {
+    color: 'black',
+    height: 80,
+    padding: '0 400px 80px',
+  },
+  datos: {
+
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+}));
 
 
 const Root = styled('div')(({ theme }) => ({
@@ -39,23 +53,24 @@ const Grid = styled(MuiGrid)(({ theme }) => ({
 }));
 
 export default function DividerText() {
+  const classes = useStyles();
 
   const content = (
-    <div>
+    <div className={classes.texto}>
       {`Centro naturista con más de 30 años en el mercado siempre pensando en el bienestar de la Familia. Ofrecemos una gama de productos naturales para el cuidado de la salud, tenemos productos tanto de cosmética natural como suplementos alimenticios haciendo que su día a día sea más placentero y sobre todo una buena salud preventiva le dará una vejez más autovalente.
         Los nuevos tiempos nos han acercado a la Vida más sana en todos los sentidos, en Vida Natural buscamos acercarlos a este mundo de los productos naturales tenemos personal capacitado para responder todas sus dudas y guiarlos en el buen uso de estos productos.
         Los esperamos`}
     </div>
   );
   const contact = (
-    <div>
+    <div className={classes.contacto}>
       <h4> {`Teléfono: (+56) 2 87498765 `} </h4>
       <h4> {`Email:`}<ButtonMailto label="Vidanatural_x@hotmail.com" mailto="mailto:Vidanatural_x@hotmail.com?subject=Subject'body=Body%20goes%20here" /> </h4>
-     
+
     </div>
   );
   const horario = (
-    <div>
+    <div className={classes.datos}>
       <h4> {`Horario: Lunes a viernes 10:30-13:30, 15:00-18:00  Sábado: 10:30 - 13:00`}</h4>
       <h4> {`Dirección: Monjitas 844, Local 37, Región Metropolitana de Santiago.`}</h4>
     </div>

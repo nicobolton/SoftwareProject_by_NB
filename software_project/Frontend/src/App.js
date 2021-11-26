@@ -79,13 +79,19 @@ function App() {
             <AddProducto />
           </Route>
 
-          <Route path="/editProducto">
+          <Route path="/editar">
             <Navbar_admin />
             <editProducto />
           </Route>
 
+          <Route path="/suppusr">
+            <Navbar_usr />
+            <Soporte />
+          </Route>
+
           <Route path="/supp">
-            <Soporte/>
+            <Navbar />
+            <Soporte />
           </Route>
 
           <Route path="/DelProducto">

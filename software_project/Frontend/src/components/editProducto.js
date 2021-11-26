@@ -1,4 +1,4 @@
-import * as React from 'react';
+/*import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,10 +6,10 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { Paper } from '@material-ui/core';
+//import Paper from '@mui/material/Paper';
+//import { useEffect, useState } from 'react';
 import { useState, useEffect } from 'react';
-
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -24,6 +24,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
         backgroundColor: theme.palette.action.hover,
     },
+    //hide last border
     '&:last-child td, &:last-child th': {
         border: 0,
     },
@@ -41,21 +42,28 @@ const rows = [
 
 ];
 
+export default function editProducto() {
 
-export default function EditProducto() {
-    const [productos, setProductos] = useState([]);
+    const [data, setdata] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:4000/producto')
-            .then(response => response.json())
-            .then(data => setProductos(data))
-    } , [])
+        const getUsers = async () => {
+            fetch("http:localhost:4000/api/historial")
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    setdata(data);
+                });
+        };
+        getUsers().catch(null);
+    }, []);
 
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700}} aria-label="customized table">
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
+                        <StyledTableCell align="center">ID venta</StyledTableCell>
                         <StyledTableCell align="center">Fecha</StyledTableCell>
                         <StyledTableCell align="center">Producto</StyledTableCell>
                         <StyledTableCell align="center">Cantidad</StyledTableCell>
@@ -64,20 +72,18 @@ export default function EditProducto() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {productos.map(productos => (
-                        <StyledTableRow key={productos.id}>
-                            <StyledTableCell component="th" scope="row">
-                                {productos.fecha}
-                            </StyledTableCell>
-                            <StyledTableCell align="right">{productos.producto}</StyledTableCell>
-                            <StyledTableCell align="right">{productos.cantidad}</StyledTableCell>
-                            <StyledTableCell align="right">{productos.precio}</StyledTableCell>
-                            <StyledTableCell align="right">{productos.subtotal}</StyledTableCell>
+                    {data.map(data => (
+                        <StyledTableRow key={data.id}>
+                            <StyledTableCell align="center">{data.id_venta}</StyledTableCell>
+                            <StyledTableCell align="center">{data.fecha}</StyledTableCell>
+                            <StyledTableCell align="center">Vitaminas</StyledTableCell>
+                            <StyledTableCell align="center">{data.cantidad}</StyledTableCell>
+                            <StyledTableCell align="center">3000</StyledTableCell>
+                            <StyledTableCell align="center">{data.subtotal}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>
             </Table>
         </TableContainer>
     );
-
-}
+}*/
