@@ -95,6 +95,9 @@ export default function CheckoutCard({ product: { id_producto, imagen, nombre, i
             />
 
             <CardActions disableSpacing className={classes.cardActions}>
+                <Typography className={classes.action} align="left" variant='h5' color='textSecondary'>
+                    Cantidad:
+                </Typography>
                 <IconButton>
                     <DeleteIcon fontSize="large" align="right" onClick={removeItem} />
                 </IconButton>

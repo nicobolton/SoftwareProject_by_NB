@@ -22,6 +22,7 @@ import editProducto from './components/editProducto';
 import Product from './components/Product';
 import Soporte from './components/soporte';
 import CheckoutPage from './components/CheckoutPage';
+import CheckoutPagenr from './components/CheckoutPagenr';
 //import Search from './pruebas/test';
 //import Usuario from './pruebas/c';
 
@@ -70,6 +71,12 @@ function App() {
             <Navbar_usr />
             <CheckoutPage />
           </Route>
+
+          <Route path="/checkout-page-nr">
+            <Navbar />
+            <CheckoutPagenr />
+          </Route>
+
 
 
           {/* <Route path="/testing">

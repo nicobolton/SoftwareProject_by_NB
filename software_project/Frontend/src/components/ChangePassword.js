@@ -64,7 +64,6 @@ export default function CambiarPassword() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    pass: password,
                     newpass: newpassword,
                     id_usuario: localStorage.getItem("token")
                 }),
