@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Products() {
   const classes = useStyles();
   const [data, setData] = useState([]);
-  const [buqueda, setBusqueda]= useState("");
+  const [buqueda, setBusqueda] = useState("");
 
   useEffect(() => {
     const getProductos = async () => {
@@ -32,12 +32,12 @@ export default function Products() {
 
   return (
     <div className={classes.root}>
-      
+
       <Grid container spacing={1} >
         {
           data.map(data => (
 
-            <Grid item xs={2} sm={2} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <Product key={data.id_producto} product={data} />
             </Grid>
           ))}

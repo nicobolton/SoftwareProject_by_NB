@@ -2,13 +2,12 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Typography, typography } from "@material-ui/core";
-import { useStateValue } from "../StateProvider";
+//import { useStateValue } from "../StateProvider";
 import CheckoutCard from "./CheckoutCard";
-import Total from "./Total";
-import Product from './Product';
+//import Total from "./Total";
 import { useState, useEffect } from 'react';
-import product from "./Product";
-import Products from './Products';
+import Total from './Total';
+import { useStateValue } from '../StatePRovider';
 // import './fotos'
 
 const useStyles = makeStyles((theme) => ({
@@ -18,14 +17,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CheckoutPage = () => {
+export default function CheckoutPage() {
     const classes = useStyles();
-
+    const [data, setData] = useState([]);
+    const [{ basket }, dispatch] = useStateValue();
 
     function FormRow() {
         return (
             <React.Fragment>
-                {Products?.map((item) => (
+                {basket?.map((item) => (
                     <Grid item xs={12} sm={8} md={6} lg={4}>
                         <CheckoutCard Key={item.id} product={item} />
                     </Grid>
@@ -48,13 +48,12 @@ const CheckoutPage = () => {
                 </Grid>
                 <Grid item xs={12} sm={4} md={3}>
                     <Typography align='center' gutterBottom variant='h4'>
-                        Total
+                        <Total />
                     </Typography>
                 </Grid>
             </Grid>
         </div>
 
-    )
-
+    );
 
 }

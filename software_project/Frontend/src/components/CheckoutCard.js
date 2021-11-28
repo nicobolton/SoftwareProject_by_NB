@@ -4,13 +4,10 @@ import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { AddShoppingCart } from '@material-ui/icons';
+import DeleteIcon from '@material-ui/icons/Delete'
 import { useState, useEffect } from 'react';
 // import './fotos'
 
@@ -34,15 +31,10 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '56.25%',
         display: 'flex',
     },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
+    cardActions: {
+        display: "flex",
+        justifyContent: "right",
+        textAlign: "center",
     },
 }));
 
@@ -83,35 +75,19 @@ export default function CheckoutCard({ product: { id_producto, imagen, nombre, i
                     </Typography>
                 }
                 title={nombre}
-                subheader={stock}
+                subheader={"Stock: " + stock}
             />
             <CardMedia
                 className={classes.media} //da el estilo a la wea
                 height="300px"
                 width="300px"
-                image={require("./fotos/" + id_producto + ".png")}
+                image={imagen}
                 title="productos"
             />
 
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {descripcion}
-                </Typography>
-            </CardContent>
-
-            <CardActions disableSpacing>
-                <IconButton aria-label='Add to Cart'>
-                    <AddShoppingCart fontsize='large' />
-                </IconButton>
-                <IconButton
-                    className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                    })}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                >
-                    <ExpandMoreIcon />
+            <CardActions disableSpacing className={classes.cardActions}>
+                <IconButton>
+                    <DeleteIcon fontSize="large" align="right" />
                 </IconButton>
             </CardActions>
         </Card>

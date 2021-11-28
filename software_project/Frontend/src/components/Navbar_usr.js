@@ -99,11 +99,13 @@ export default function Navbar_usr() {
                         <Button varian="outlined" href="/App">
                             <strong>Cerrar Sesión</strong>
                         </Button>
-                        <IconButton aria-label="Mostrar items carrito" color="inherit">
-                            <Badge badgeContent={1} color="secondary"> {/*Color a la compra*/}
-                                <ShoppingCart href="/carrito" frontSize="large" color="primary" />
-                            </Badge>
-                        </IconButton>
+                        <Link to="checkout-page">
+                            <IconButton aria-label="Mostrar items carrito" color="inherit">
+                                <Badge badgeContent={1} color="secondary"> {/*Color a la compra*/}
+                                    <ShoppingCart href="/checkout" frontSize="large" color="primary" />
+                                </Badge>
+                            </IconButton>
+                        </Link>
                     </div>
                 </Toolbar>
             </AppBar>

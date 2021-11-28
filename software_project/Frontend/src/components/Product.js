@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { AddShoppingCart } from '@material-ui/icons';
 import { useState, useEffect } from 'react';
+import { actionTypes } from '../reducer';
+import { useStateValue } from '../StatePRovider';
 // import './fotos'
 
 // creamos el formato para el dinero, además aproxima valores (caso de trabajar dolares)
@@ -68,11 +70,29 @@ export default function Product({ product: { id_producto, imagen, nombre, id_cat
     localStorage.setItem('id_producto', id.target.getAttribute('value'))
     window.location.href = "#"
   }
-
+  const [{ basket }, dispatch] = useStateValue();
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const addToBasket = () => {
+    dispatch({
+      type: actionTypes.ADD_TO_BASKET,
+      item: {
+        id_producto,
+        nombre,
+        //productType: productType,
+        //image: require("./fotos/" + id_producto + ".png"),
+        imagen,
+        descripcion,
+        precio,
+        id_categoria,
+        marca,
+        stock,
+      }
+    })
+  }
 
   return (
     <Card className={classes.root}>
@@ -83,7 +103,7 @@ export default function Product({ product: { id_producto, imagen, nombre, id_cat
           </Typography>
         }
         title={nombre}
-        subheader={stock}
+        subheader={"Stock: " + stock}
       />
       <CardMedia
         className={classes.media} //da el estilo a la wea
@@ -93,14 +113,8 @@ export default function Product({ product: { id_producto, imagen, nombre, id_cat
         title="productos"
       />
 
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {descripcion}
-        </Typography>
-      </CardContent>
-
       <CardActions disableSpacing>
-        <IconButton aria-label='Add to Cart'>
+        <IconButton aria-label='Add to Cart' onClick={addToBasket}>
           <AddShoppingCart fontsize='large' />
         </IconButton>
         <IconButton
@@ -114,6 +128,11 @@ export default function Product({ product: { id_producto, imagen, nombre, id_cat
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
+      <Collapse in={expanded} timeout='auto' unmountOnExit>
+        <CardContent>
+          <Typography paragraph>{descripcion}</Typography>
+        </CardContent>
+      </Collapse>
     </Card>
   );
 }

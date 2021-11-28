@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 const useStyles = makeStyles((theme) => ({
   box: {
     height: 500,
-    padding: '10px 800px 10px',
+    padding: '10px 600px 10px',
   },
   title: {
     height: 100,
