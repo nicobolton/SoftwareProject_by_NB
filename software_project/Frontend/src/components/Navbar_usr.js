@@ -12,7 +12,7 @@ import { Badge } from '@material-ui/core';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
-
+import { useStateValue } from '../StatePRovider';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar_usr() {
     const classes = useStyles();
+    const [{ basket }, dispatch] = useStateValue();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -101,7 +102,7 @@ export default function Navbar_usr() {
                         </Button>
                         <Link to="checkout-page">
                             <IconButton aria-label="Mostrar items carrito" color="inherit">
-                                <Badge badgeContent={1} color="secondary"> {/*Color a la compra*/}
+                                <Badge badgeContent={basket?.length} color="secondary"> {/*Color a la compra*/}
                                     <ShoppingCart href="/checkout" frontSize="large" color="primary" />
                                 </Badge>
                             </IconButton>

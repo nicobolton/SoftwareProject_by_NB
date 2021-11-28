@@ -9,6 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete'
 import { useState, useEffect } from 'react';
+import { actionTypes } from '../reducer';
+import { useStateValue } from '../StatePRovider';
 // import './fotos'
 
 // creamos el formato para el dinero, además aproxima valores (caso de trabajar dolares)
@@ -42,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CheckoutCard({ product: { id_producto, imagen, nombre, id_categoria, marca, descripcion, precio, stock } }) {
     const classes = useStyles();
     const [data, setData] = useState([]);
+    const [{ basket }, dispatch] = useStateValue();
 
     useEffect(() => {
         const getProductos = async () => {
@@ -66,6 +69,12 @@ export default function CheckoutCard({ product: { id_producto, imagen, nombre, i
         setExpanded(!expanded);
     };
 
+
+    const removeItem = () => dispatch({
+        type: actionTypes.REMOVE_ITEM,
+        id_producto,
+    });
+
     return (
         <Card className={classes.root}>
             <CardHeader
@@ -87,7 +96,7 @@ export default function CheckoutCard({ product: { id_producto, imagen, nombre, i
 
             <CardActions disableSpacing className={classes.cardActions}>
                 <IconButton>
-                    <DeleteIcon fontSize="large" align="right" />
+                    <DeleteIcon fontSize="large" align="right" onClick={removeItem} />
                 </IconButton>
             </CardActions>
         </Card>
