@@ -74,7 +74,7 @@ export default function CambiarPassword() {
                     if (json.status) {
                         alert("Contraseña actualizada con exito!");
                     } else {
-                        alert("Fallo el registro de datos :(");
+                        alert("Contraseña no acutalizada");
                     }
                 })
                 .catch((error) => {

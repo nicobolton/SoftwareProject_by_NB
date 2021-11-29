@@ -41,11 +41,11 @@ const Profile = () => {
                     />
                 </div>
                 <div>
-                    <h2>{data.map(data => <div>{data.usuario}</div>)}</h2>
+                    <h2>{data.map(data => <div>{data.usuario}</div>)}
                     <div style={{ display: "flex", justifyContent: "space-between", width: "108%" }}>
-                        <label>Telefono: +56 9 77213412</label>
+                        <label>{data.map(data => <div>{data.telefono}</div>)}  </label>
                     </div>
-
+                    </h2>
                     <div >
                         <Button varian="outlined" href="/editarUsuario">
                             <strong>Actualizar datos de usuario</strong>

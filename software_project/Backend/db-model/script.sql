@@ -44,12 +44,8 @@ create table DetalleVenta(
 
 CREATE TABLE Consultas(
     id SERIAL PRIMARY KEY,
-    correo VARCHAR(50) NOT NULL,
+    correo varchar(50) not null,
     estado BOOLEAN,
     titulo VARCHAR,
-    descripcion VARCHAR,
-    respuesta VARCHAR,
-    CONSTRAINT fk_usuario
-        FOREIGN KEY (correo)
-        REFERENCES Usuario(correo)
+    descripcion VARCHAR
 );

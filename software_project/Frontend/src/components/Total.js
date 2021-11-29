@@ -1,5 +1,5 @@
 import React from 'react';
-import accounting from "accounting"
+import accounting from 'accounting';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@mui/material';
 import { getBasketTotal } from '../reducer';

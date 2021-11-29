@@ -42,9 +42,11 @@ server.use("/api/modificarProducto", require("./api/modificarProducto"))
 
 server.use("/api/producto", require("./api/producto"))
 
-server.use("/api/buscarProducto", require("./api/buscarProducto"))
-//server.use("/api/editProducto", require("./api/editProducto"))
+server.use("/api/editPassword", require("./api/editPassword"))
+
 server.use("/api/stock", require("./api/stock"))
+
+server.use("/api/addConsulta", require("./api/addConsulta"))
 
 server.use("/api/modificarStock", require("./api/modificarStock"))
 
