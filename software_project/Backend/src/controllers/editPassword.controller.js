@@ -13,9 +13,8 @@ const pool = new Pool(config);
 const editPassword = async (req, res) => {
     console.log("Entrando funcion editar password");
     const { pass, newpass, id_usuario } = req.body;
-    const response = await pool.query(`UPDATE Usuario set clave = $2 where ID_USUARIO = $3 and clave = $1`, [
+    const response = await pool.query(`UPDATE Usuario set clave = $2 where ID_USUARIO = $3 `, [
         newpass,
-        pass,
         id_usuario
     ]);
     console.log(response);

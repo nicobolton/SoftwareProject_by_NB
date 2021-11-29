@@ -7,7 +7,9 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Icono from "../asset/Icono.png";
 import { ShoppingCart } from '@material-ui/icons';
+import { Link } from 'react-router-dom'
 import { Badge } from '@material-ui/core';
+import { useStateValue } from '../StatePRovider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
   const classes = useStyles();
+  const [{ basket }, dispatch] = useStateValue();
 
   return (
     <div className={classes.root}>
@@ -61,11 +64,13 @@ export default function Navbar() {
             <Button varian="outlined" href="/supp">
               <strong>Soporte</strong>
             </Button>
-            <IconButton aria-label="Mostrar items carrito" color="inherit">
-              <Badge badgeContent={1} color="secondary"> {/*Color a la compra*/}
-                <ShoppingCart frontsize="large" color="primary" />
-              </Badge>
-            </IconButton>
+            <Link to="checkout-page-nr">
+              <IconButton aria-label="Mostrar items carrito" color="inherit">
+                <Badge badgeContent={basket?.length} color="secondary"> {/*Color a la compra*/}
+                  <ShoppingCart href="/checkout" frontsize="large" color="primary" />
+                </Badge>
+              </IconButton>
+            </Link>
           </div>
         </Toolbar>
       </AppBar>

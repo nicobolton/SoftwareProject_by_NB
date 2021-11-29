@@ -13,9 +13,9 @@ const pool = new Pool(config);
 const modProducto = async (req, res) => {
     console.log("entrando a funcion de eliminar")
     res.header("Access-Control-Allow-Origin", "*");
-    const { ID_PRODUCTO } = req.body;
-    const sqlQuery = 'DELETE FROM Productos WHERE ID_PRODUCTO = $1 RETURNING *';
-    const values = [ID_PRODUCTO];
+    const { id_producto } = req.body;
+    const sqlQuery = 'DELETE FROM Productos WHERE id_producto = $1';
+    const values = [id_producto];
     const response = await pool.query(sqlQuery, values);
     console.log("Se elimino el producto: \n", response.rows);
     res.json(1);

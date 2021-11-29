@@ -22,6 +22,10 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { useState, useEffect } from 'react';
+import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
+
+//import { producto } from '../../../Backend/src/controllers/producto.controller';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -141,19 +145,67 @@ const rows = [
 export default function Stock() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [modalEditar, setModalEditar] = useState(false);
+    const [modalEliminar, setModalEliminar] = useState(false);
+
+
+    const [productoSeleccionado, setproductoSeleccionado] = useState({
+        id_producto: '',
+        nombre: '',
+        id_categoria: '',
+        marca: '',
+        descripcion: '',
+        precio: '',
+        stock: ''
+    });
+
+    const seleccionarProducto = (data, caso) => {
+        setproductoSeleccionado(data);
+        (caso == 'Editar') ? setModalEditar(true) : setModalEliminar(true)
+    }
+
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setproductoSeleccionado((prevState) => ({
+            ...prevState,
+            [name]: value
+        }))
+        //console.log(productoSeleccionado);
+    }
+
+    const editar = () => {
+        var dataNueva = data;
+        dataNueva.map(producto => {
+            if (producto.id_producto === productoSeleccionado.id_producto) {
+                producto.nombre = productoSeleccionado.nombre;
+                producto.id_categoria = productoSeleccionado.id_categoria;
+                producto.marca = productoSeleccionado.marca;
+                producto.descripcion = productoSeleccionado.descripcion;
+                producto.precio = productoSeleccionado.precio;
+                producto.stock = productoSeleccionado.stock;
+            }
+        });
+        setData(dataNueva);
+        setModalEditar(false);
+    }
+
+    const eliminar = () => {
+        setData(data.filter(producto => producto.id_producto !== productoSeleccionado.id_producto));
+        setModalEliminar(false);
+    }
 
     const classes = useStyles();
     const [id_producto, setIDProducto] = useState("");
-    const [id, sedId] = useState("");
+    //const [id, sedId] = useState("");
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
 
-    function validateForm() {
+    /*function validateForm() {
         return id_producto.length > 0;
-    }
+    }*/
 
 
-    async function modprod() {
+    /*async function modprod() {
         if (!loading) {
             setLoading(true);
             fetch('http://localhost:4000/api/editProducto', {
@@ -180,7 +232,7 @@ export default function Stock() {
                 });
             setLoading(false);
         }
-    }
+    }*/
 
     useEffect(() => {
         const getProductos = async () => {
@@ -189,7 +241,6 @@ export default function Stock() {
                 .then(value => {
                     setData(value);
                     console.log(data)
-                    const id = data.id_producto;
                     //var foto = Base64.getEncoder().encodeToString(data.imagen);
                 });
         };
@@ -206,12 +257,13 @@ export default function Stock() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    ID_PRODUCTO: id_producto
+                    //ID_PRODUCTO: id_producto,
+                    id_producto: localStorage.getItem("token")
                 }),
             })
                 .then((response) => response.json())
                 .then(async (json) => {
-                    if (validateForm) {
+                    if (json.status) {
                         alert("Se eliminó el producto con éxito!");
                     } else {
                         alert("No hay nada que eliminar");
@@ -243,106 +295,179 @@ export default function Stock() {
     };
 
     return (
+        <div>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell align="center">ID</StyledTableCell>
+                            <StyledTableCell align="center">Nombre</StyledTableCell>
+                            <StyledTableCell align="center">Precio</StyledTableCell>
+                            <StyledTableCell align="center">Stock</StyledTableCell>
+                            <StyledTableCell align="center"></StyledTableCell>
+                            <StyledTableCell align="center"></StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
 
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell align="center">ID</StyledTableCell>
-                        <StyledTableCell align="center">Nombre</StyledTableCell>
-                        <StyledTableCell align="center">Precio</StyledTableCell>
-                        <StyledTableCell align="center">Mod Stock</StyledTableCell>
-                        <StyledTableCell align="center">Editar</StyledTableCell>
-                        <StyledTableCell align="center">Eliminar</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
+                        {
+                            data.map(data => (
+                                <TableRow key={data.id_producto}>
+                                    <TableCell component="th" style={{ width: 160 }} align="center" scope="row">
+                                        {data.id_producto}
+                                    </TableCell>
+                                    <TableCell style={{ width: 160 }} align="center">
+                                        {data.nombre}
+                                    </TableCell>
+                                    <TableCell style={{ width: 160 }} align="center">
+                                        {data.precio}
+                                    </TableCell>
+                                    <TableCell style={{ width: 100 }} align="center">
+                                        {data.stock}
+                                    </TableCell>
+                                    <TableCell style={{ width: 160 }} align="center" >
 
-                    {
-                        data.map(data => (
-                            <TableRow key={data.id_producto}>
-                                <TableCell component="th" style={{ width: 160 }} align="center" scope="row">
-                                    {data.id_producto}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center">
-                                    {data.nombre}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center">
-                                    {data.precio}
-                                </TableCell>
-                                <TableCell style={{ width: 100 }} align="center">
-                                    <button style={{ width: 20 }}>
-                                        -
-                                    </button>
-                                    <TextField id="outlined-basic" style={{ width: 50 }} label={data.stock} variant="outlined" />
-                                    <button style={{ width: 20 }}>
-                                        +
-                                    </button>
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center" >
-                                    <Link to="/historial">
                                         <Button
                                             type="submit"
                                             fullWidth
                                             variant="contained"
                                             className={classes.submit}
+                                            value_id={data.id_producto}
+                                            onClick={() => seleccionarProducto(data, 'Editar')}
                                         >
 
                                             Editar
                                         </Button>
-                                    </Link>
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center"  >
-                                    <div onSubmit={handleSubmit} noValidate>
-                                        <Button
-                                            //disabled={!validateForm()}
-                                            type="submit"
-                                            value={id_producto}
-                                            onChange={e => setIDProducto(e.target.value)}
-                                            fullWidth
-                                            variant="contained"
-                                            color="primary"
-                                            className={classes.submit}
-                                        >
-                                            Eliminar
-                                        </Button>
-                                    </div>
 
-                                </TableCell>
-                            </TableRow>
-                        ))
-                    }
+                                    </TableCell>
+                                    <TableCell style={{ width: 160 }} align="center"  >
+                                        <div onSubmit={handleSubmit} noValidate>
+                                            <Button
+                                                //disabled={!validateForm()}
+                                                type="submit"
+                                                value={data.id_producto}
+                                                onChange={e => setIDProducto(data.id_producto)}
+                                                fullWidth
+                                                variant="contained"
+                                                color="primary"
+                                                className={classes.submit}
+                                                onClick={() => seleccionarProducto(data, 'Eliminar')}
+                                            >
+                                                Eliminar
+                                            </Button>
+                                        </div>
 
-                    {emptyRows > 0 && (
-                        <TableRow style={{ height: 53 * emptyRows }}>
-                            <TableCell colSpan={6} />
-                        </TableRow>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        }
 
-                    )}
+                    </TableBody>
 
-                </TableBody>
-                <TableFooter>
-                    <TableRow>
-                        <TablePagination
-                            rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                            colSpan={3}
-                            count={rows.length}
-                            rowsPerPage={rowsPerPage}
-                            page={page}
-                            SelectProps={{
-                                inputProps: {
-                                    'aria-label': 'rows per page',
-                                },
-                                native: true,
-                            }}
-                            onPageChange={handleChangePage}
-                            onRowsPerPageChange={handleChangeRowsPerPage}
-                            ActionsComponent={TablePaginationActions}
+                </Table>
+            </TableContainer>
+
+            <Modal className="editar" isOpen={modalEditar}>
+                <ModalHeader>
+                    <div>
+                        <h3>Editar Producto</h3>
+                    </div>
+                </ModalHeader>
+                <ModalBody>
+                    <div className="form-group">
+                        <label>ID</label>
+                        <TextField
+                            className="form-control"
+                            readOnly
+                            type="number"
+                            name="id"
+                            value={productoSeleccionado && productoSeleccionado.id_producto}
+                            onChange={handleChange}
                         />
-                    </TableRow>
-                </TableFooter>
-            </Table>
-        </TableContainer>
 
+                        <label>nombre</label>
+                        <TextField
+                            className="form-control"
+                            readOnly
+                            type="text"
+                            name="nombre"
+                            value={productoSeleccionado && productoSeleccionado.nombre}
+                            onChange={handleChange}
+                        />
+
+                        <label>ID_categoria</label>
+                        <TextField
+                            className="form-control"
+                            readOnly
+                            type="number"
+                            name="id_categoria"
+                            value={productoSeleccionado && productoSeleccionado.id_categoria}
+                            onChange={handleChange}
+                        />
+
+                        <label>Marca</label>
+                        <TextField
+                            className="form-control"
+                            readOnly
+                            type="text"
+                            name="marca"
+                            value={productoSeleccionado && productoSeleccionado.marca}
+                            onChange={handleChange}
+                        />
+
+                        <label>Descripcion</label>
+                        <TextField
+                            className="form-control"
+                            readOnly
+                            type="text"
+                            name="descripcion"
+                            value={productoSeleccionado && productoSeleccionado.descripcion}
+                            onChange={handleChange}
+                        />
+
+                        <label>Precio</label>
+                        <TextField
+                            className="form-control"
+                            readOnly
+                            type="number"
+                            name="precio"
+                            value={productoSeleccionado && productoSeleccionado.precio}
+                            onChange={handleChange}
+                        />
+
+                        <label>Stock</label>
+                        <TextField
+                            className="form-control"
+                            readOnly
+                            type="number"
+                            name="stock"
+                            value={productoSeleccionado && productoSeleccionado.stock}
+                            onChange={handleChange}
+                        />
+                        <br />
+                    </div>
+                </ModalBody>
+                <ModalFooter>
+                    <Button className="btn btn-primary" onClick={() => editar()}>
+                        Actualizar
+                    </Button>
+                    <Button className="btn btn-danger"
+                        onClick={() => setModalEditar(false)}
+                    >
+                        Cancelar
+                    </Button>
+                </ModalFooter>
+            </Modal>
+
+            <Modal className="eliminar" isOpen={modalEliminar}>
+                <ModalBody>
+                    Estas seguro de que quieres eliminar el producto {productoSeleccionado && productoSeleccionado.nombre}
+                </ModalBody>
+                <ModalFooter>
+                    <Button className="btn bnt-danger" onClick={() => eliminar()}>Sí</Button>
+                    <Button className="btn btn.seconday" onClick={() => setModalEliminar(false)}>No</Button>
+                </ModalFooter>
+            </Modal>
+        </div>
     );
 }
