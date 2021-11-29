@@ -18,9 +18,10 @@ import DelProducto from './components/delProducto';
 import Stock from './components/Stock';
 import Nosotros from './components/aboutus';
 import editProductos from './components/editProducto';
-import editProducto from './components/editProducto';
+import EditProducto from './components/editProducto';
 import Product from './components/Product';
 import Soporte from './components/soporte';
+import SoporteAdmin from './components/soporteadmin';
 import CheckoutPage from './components/CheckoutPage';
 import CheckoutPagenr from './components/CheckoutPagenr';
 //import Search from './pruebas/test';
@@ -92,9 +93,9 @@ function App() {
             <AddProducto />
           </Route>
 
-          <Route path="/editar">
+          <Route path="/editarprod">
             <Navbar_admin />
-            <editProducto />
+            <EditProducto />
           </Route>
 
           <Route path="/suppusr">
@@ -102,9 +103,9 @@ function App() {
             <Soporte />
           </Route>
 
-          <Route path="/supp">
-            <Navbar />
-            <Soporte />
+          <Route path="/suppres">
+            <Navbar_admin />
+            <SoporteAdmin />
           </Route>
 
           <Route path="/DelProducto">

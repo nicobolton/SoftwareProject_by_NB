@@ -12,8 +12,8 @@ const pool = new Pool(config);
 
 const editProducto = async (req, res) => {
     console.log("Entrando funcion editar producto");
-    const { id, id_usuario } = req.body;
-    const response = await pool.query(`SELECT * FROM productos WHERE ID_USUARIO = $2`, [
+    const { id_usuario } = req.body;
+    const response = await pool.query(`SELECT * FROM productos WHERE id_producto = $2`, [
         id_usuario
     ]);
     console.log(response);

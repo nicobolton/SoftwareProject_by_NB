@@ -1,4 +1,4 @@
-/*import * as React from 'react';
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,8 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Paper } from '@material-ui/core';
 //import Paper from '@mui/material/Paper';
-//import { useEffect, useState } from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -42,20 +42,21 @@ const rows = [
 
 ];
 
-export default function editProducto() {
+export default function EditProducto() {
 
-    const [data, setdata] = useState([]);
+    const [data, setData] = useState([]);
 
     useEffect(() => {
-        const getUsers = async () => {
-            fetch("http:localhost:4000/api/historial")
+        const getProductos = async () => {
+            fetch("http://localhost:4000/api/editProducto")
                 .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    setdata(data);
+                .then(value => {
+                    setData(value);
+                    console.log(data)
+                    //var foto = Base64.getEncoder().encodeToString(data.imagen);
                 });
         };
-        getUsers().catch(null);
+        getProductos().catch(null);
     }, []);
 
     return (
@@ -63,12 +64,15 @@ export default function editProducto() {
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell align="center">ID venta</StyledTableCell>
-                        <StyledTableCell align="center">Fecha</StyledTableCell>
-                        <StyledTableCell align="center">Producto</StyledTableCell>
-                        <StyledTableCell align="center">Cantidad</StyledTableCell>
-                        <StyledTableCell align="center">Precio</StyledTableCell>
-                        <StyledTableCell align="center">Subtotal</StyledTableCell>
+                        <StyledTableCell align="center">ID producto</StyledTableCell>
+                        <StyledTableCell align="center">Imagen</StyledTableCell>
+                        <StyledTableCell align="center">Nombre</StyledTableCell>
+                        <StyledTableCell align="center">id_categoria</StyledTableCell>
+                        <StyledTableCell align="center">marca</StyledTableCell>
+                        <StyledTableCell align="center">descripción</StyledTableCell>
+                        <StyledTableCell align="center">precio</StyledTableCell>
+                        <StyledTableCell align="center">stock</StyledTableCell>
+                        <StyledTableCell align="center"></StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -86,4 +90,4 @@ export default function editProducto() {
             </Table>
         </TableContainer>
     );
-}*/
+}
