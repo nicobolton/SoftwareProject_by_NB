@@ -28,11 +28,20 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 400px 80px',
   },
   datos: {
-
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
+  contacto:{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  contenedor:{
+    border: '1px solid black',
+    padding: '10px',
+    margin: '40px',
+  }
 }));
 
 
@@ -58,21 +67,26 @@ export default function DividerText() {
   const content = (
     <div className={classes.texto}>
       {`Centro naturista con más de 30 años en el mercado siempre pensando en el bienestar de la Familia. Ofrecemos una gama de productos naturales para el cuidado de la salud, tenemos productos tanto de cosmética natural como suplementos alimenticios haciendo que su día a día sea más placentero y sobre todo una buena salud preventiva le dará una vejez más autovalente.
-        Los nuevos tiempos nos han acercado a la Vida más sana en todos los sentidos, en Vida Natural buscamos acercarlos a este mundo de los productos naturales tenemos personal capacitado para responder todas sus dudas y guiarlos en el buen uso de estos productos.
-        Los esperamos`}
+        Los nuevos tiempos nos han acercado a la Vida más sana en todos los sentidos, en Vida Natural buscamos acercarlos a este mundo de los productos naturales tenemos personal capacitado para responder todas sus dudas y guiarlos en el buen uso de estos productos.`}
     </div>
   );
   const contact = (
+    <div className={classes.contenedor}>
     <div className={classes.contacto}>
       <h4> {`Teléfono: (+56) 2 87498765 `} </h4>
       <h4> {`Email:`}<ButtonMailto label="Vidanatural_x@hotmail.com" mailto="mailto:Vidanatural_x@hotmail.com?subject=Subject'body=Body%20goes%20here" /> </h4>
 
     </div>
+    </div>
   );
   const horario = (
+    <div className={classes.contenedor}>
     <div className={classes.datos}>
-      <h4> {`Horario: Lunes a viernes 10:30-13:30, 15:00-18:00  Sábado: 10:30 - 13:00`}</h4>
-      <h4> {`Dirección: Monjitas 844, Local 37, Región Metropolitana de Santiago.`}</h4>
+      <h4> {"Horario: Lunes a viernes 10:30-13:30, 15:00-18:00"}</h4>
+      <h4> {"Sábado 10:30-13:30"}</h4>
+      <h4> {"Dirección: Monjitas 844, Local 37"}</h4>
+      <h4>{"Región Metropolitana de Santiago"}</h4>
+    </div>
     </div>
   );
   return (
