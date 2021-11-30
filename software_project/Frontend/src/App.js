@@ -102,6 +102,11 @@ function App() {
             <Navbar_admin />
             <EditProducto />
           </Route>
+          
+          <Route path="/supp">
+            <Navbar/>
+            <Soporte/>
+          </Route>
 
           <Route path="/supp">
             <Navbar />

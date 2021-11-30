@@ -50,7 +50,6 @@ export default function StateTextFields() {
         },
         body: JSON.stringify({
             correo: email,
-            estado: false,
             titulo: title,
             descripcion: consulta
         }),
