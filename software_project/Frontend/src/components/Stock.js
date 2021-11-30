@@ -5,11 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { styled } from "@mui/material/styles";
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
-import { Link } from 'react-router-dom'
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
 import TableHead from "@mui/material/TableHead";
 import TextField from '@mui/material/TextField';
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -161,7 +158,7 @@ export default function Stock() {
 
     const seleccionarProducto = (data, caso) => {
         setproductoSeleccionado(data);
-        (caso == 'Editar') ? setModalEditar(true) : setModalEliminar(true)
+        (caso === 'Editar') ? setModalEditar(true) : setModalEliminar(true)
     }
 
     const handleChange = e => {
@@ -281,18 +278,6 @@ export default function Stock() {
         event.preventDefault();
     }
 
-    // Avoid a layout jump when reaching the last page with empty rows.
-    const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
 
     return (
         <div>

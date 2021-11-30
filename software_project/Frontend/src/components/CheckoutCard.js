@@ -90,7 +90,7 @@ export default function CheckoutCard({ product: { id_producto, imagen, nombre, i
                 className={classes.media} //da el estilo a la wea
                 height="300px"
                 width="300px"
-                image={imagen}
+                image={require("./fotos/" + id_producto + ".png")}
                 title="productos"
             />
 

@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@mui/material';
 import { getBasketTotal } from '../reducer';
 import { useStateValue } from '../StatePRovider';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,9 +27,11 @@ const Total = () => {
         <div className={classes.root}>
             <h5>Total items: {basket?.length}</h5>
             <h5> {accounting.formatMoney(getBasketTotal(basket), "$")}</h5>
-            <Button className={classes.button} variant="contained" color="secondary">
-                Check out
-            </Button>
+            <Link to="/checkout">
+                <Button className={classes.button} variant="contained" color="secondary">
+                    Check out
+                </Button>
+            </Link>
         </div>
 
     )

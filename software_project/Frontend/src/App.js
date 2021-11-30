@@ -20,10 +20,12 @@ import Nosotros from './components/aboutus';
 import editProductos from './components/editProducto';
 import EditProducto from './components/editProducto';
 import Product from './components/Product';
-import Soporte from './components/soporte';
+import Soporte from './components/soporteusr';
+import Soporteusr from './components/soporteusr';
 import SoporteAdmin from './components/soporteadmin';
 import CheckoutPage from './components/CheckoutPage';
 import CheckoutPagenr from './components/CheckoutPagenr';
+import Checkout from './components/CheckoutForm/Checkout';
 //import Search from './pruebas/test';
 //import Usuario from './pruebas/c';
 
@@ -78,7 +80,10 @@ function App() {
             <CheckoutPagenr />
           </Route>
 
-
+          {/*<Route path="/checkout">
+            <Navbar />
+            <Checkout />
+          </Route>*/}
 
           {/* <Route path="/testing">
             <Usuario/>
@@ -98,9 +103,14 @@ function App() {
             <EditProducto />
           </Route>
 
+          <Route path="/supp">
+            <Navbar />
+            <Soporte />
+          </Route>
+
           <Route path="/suppusr">
             <Navbar_usr />
-            <Soporte />
+            <Soporteusr />
           </Route>
 
           <Route path="/suppres">
