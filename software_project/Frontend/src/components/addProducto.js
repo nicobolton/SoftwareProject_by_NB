@@ -8,6 +8,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
 
 function Copyright() {
     return (
@@ -52,6 +53,11 @@ export default function AddProducto() {
     const [id_categoria, setIDCategoria] = useState("");
     const [stock_pro, setStock] = useState("");
     const [loading, setLoading] = useState(false);
+    const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dwdylxe2v/image/upload';
+    const CLOUDINARY_UPLOAD_PRESET = 'yrgvysul';
+    const imagePreview = document.getElementById('img-preview');
+    const imageUploader = document.getElementById('imagen');
+
 
     function validateForm() {
         return id_categoria.length > 0 && stock_pro.length > 0 && brand.length > 0 && name.length > 0 && price.length > 0 && description.length > 0;
@@ -96,7 +102,24 @@ export default function AddProducto() {
         event.preventDefault();
     }
 
+    /* imageUploader.addEventListener('change', async (e) => {
+         const file = e.target.files[0];
+         const formData = new FormData();
+         formData.append('file', file);
+         formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+ 
+         const res = await axios.post(CLOUDINARY_URL, formData, {
+             headers: {
+                 'Content-Type': 'multipart/form-data'
+             }
+ 
+         });
+         imagePreview.src = res.data.secure_url;
+     });*/
+
+
     return (
+
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
@@ -105,15 +128,14 @@ export default function AddProducto() {
                     Agregar Producto
                 </Typography>
                 <div>
-                    <img style={{ widht: "160px", heigh: "160px", borderRadius: "80px" }} alt="Persona"
-                        src="https://vidanat.cl/wp-content/uploads/2019/01/calcio-magnesio-vitamina-c-y-d3.png"
+                    <img style={{ widht: "160px", heigh: "160px", borderRadius: "80px" }} id="img-preview"
 
                     />
                 </div>
                 <form className={classes.form} onSubmit={handleSubmit} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <TextField
+                            <input
                                 value={image}
                                 onChange={e => setImage(e.target.value)}
                                 name="imagen"
