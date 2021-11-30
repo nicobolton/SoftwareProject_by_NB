@@ -71,9 +71,10 @@ export default function CambiarPassword() {
                 .then((response) => response.json())
                 .then(async (json) => {
                     if (json.status) {
-                        alert("Contraseña actualizada con exito!");
-                    } else {
                         alert("Contraseña no acutalizada");
+
+                    } else {
+                        alert("Contraseña actualizada con exito!");
                     }
                 })
                 .catch((error) => {

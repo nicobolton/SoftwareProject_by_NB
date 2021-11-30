@@ -50,7 +50,7 @@ export default function CambiarDatos() {
   const [dire, setDire] = useState("");
   const [loading, setLoading] = useState(false);
 
-  function validateForm() { 
+  function validateForm() {
     return username.length > 0 || email.length > 0 || phone.length > 0 || dire.length > 0;
   }
 
@@ -67,16 +67,18 @@ export default function CambiarDatos() {
           user: username,
           email: email,
           tel: phone,
-          dir : dire,
+          dir: dire,
           id_usuario: localStorage.getItem("token")
         }),
       })
         .then((response) => response.json())
         .then(async (json) => {
           if (json.status) {
-            alert("Datos actualizados con exito!");
-          } else {
+
             alert("Fallo el registro de datos :(");
+          } else {
+
+            alert("Datos actualizados con exito!");
           }
         })
         .catch((error) => {
@@ -100,8 +102,8 @@ export default function CambiarDatos() {
           Cambiar datos de Usuario
         </Typography>
         <div>
-          <img style={{widht:"160px",heigh:"160px",borderRadius:"80px"}} alt="Persona"
-          src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          <img style={{ widht: "160px", heigh: "160px", borderRadius: "80px" }} alt="Persona"
+            src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
           />
         </div>
         <form className={classes.form} onSubmit={handleSubmit} noValidate>
@@ -155,7 +157,7 @@ export default function CambiarDatos() {
               />
             </Grid>
           </Grid>
-          
+
           <Button
             disabled={!validateForm()}
             type="submit"
