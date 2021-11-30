@@ -80,10 +80,10 @@ function App() {
             <CheckoutPagenr />
           </Route>
 
-          {/*<Route path="/checkout">
+          <Route path="/checkout">
             <Navbar />
             <Checkout />
-          </Route>*/}
+          </Route>
 
           {/* <Route path="/testing">
             <Usuario/>

@@ -4,13 +4,13 @@ import React from 'react';
 import useStyles from "./styles";
 import { useState } from "react";
 import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm'
+import PaymentForm from './PaymentForm';
 
 
 const Checkout = () => {
     const classes = useStyles();
     const [activeStep, setActivestep] = useState(0);
-    const steps = ["shipping address", "payment details"];
+    const steps = ["Datos de Entrega", "Detalle de Pago"];
 
     const nextStep = () => setActivestep((prevActivestep) => prevActivestep + 1);
     const backStep = () => setActivestep((prevActivestep) => prevActivestep - 1);
@@ -21,7 +21,7 @@ const Checkout = () => {
     return (
         <>
             <main className={classes.layout}>
-                <Paper className={classes.Paper}>
+                <Paper className={classes.paper}>
                     <Typography component='h1' variant='h4' align='center'>
                         Checkout
                     </Typography>
@@ -33,7 +33,7 @@ const Checkout = () => {
                         ))}
                     </Stepper>
                 </Paper>
-                <Form />
+
             </main>
         </>
     )

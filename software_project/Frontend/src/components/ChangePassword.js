@@ -57,7 +57,7 @@ export default function CambiarPassword() {
     async function ActualizarCredenciales() {
         if (!loading) {
             setLoading(true);
-            fetch('http://localhost:4000/api/editpass', {
+            fetch('http://localhost:4000/api/editPassword', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -146,7 +146,7 @@ export default function CambiarPassword() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={ActualizarCredenciales}
+                    //onClick={handleSubmit}
                     >
                         Actualizar
                     </Button>
